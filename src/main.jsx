@@ -27,6 +27,8 @@ import Orders from "./Pages/Orders/Orders.jsx";
 import SliderDetails from "./Pages/Slider/SliderDetails.jsx";
 import SliderView from "./Pages/Slider/SliderView.jsx";
 import RootLayout from "./layout/RootLayout.jsx";
+import AddSubSubCategory from "./Pages/Sub Sub Category/AddSubSubCategory.jsx";
+import ViewSubSubCategory from "./Pages/Sub Sub Category/ViewSubSubCategory.jsx";
 
 
 
@@ -40,6 +42,7 @@ const route = createBrowserRouter(
       <Route element={<RootLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
+        
         <Route path="colors">
           <Route path="add-color" element={<AddColor />}></Route>
           <Route path="view-color" element={<ViewColor />}></Route>
@@ -63,12 +66,24 @@ const route = createBrowserRouter(
           <Route path="view" element={<ViewSubCategory />}></Route>
         </Route>
 
-
-        <Route path="category">
-          <Route path="add" element={<AddSubCategory />}></Route>
-          <Route path="update/:id?" element={<AddSubCategory />}></Route>
-          <Route path="view" element={<ViewSubCategory />}></Route>
+        <Route path="category/sub-sub-category">
+          <Route path="add" element={<AddSubSubCategory />}></Route>
+          <Route path="update/:id?" element={<AddSubSubCategory />}></Route>
+          <Route path="view" element={<ViewSubSubCategory />}></Route>
         </Route>
+
+        {/* subMenu: [
+      {
+        navName: "Add Sub Sub Category",
+        link: "/category/sub-sub-category/add",
+      },
+      {
+        navName: "View Sub Sub Category",
+        link: "/category/sub-sub-category/view",
+      }, */}
+
+
+        
         <Route path="product">
           <Route path="product-details" element={<ProductDetails />}></Route>
           <Route path="product-items" element={<ProductItems />}></Route>
