@@ -25,7 +25,7 @@ export let navList = [
   },
   {
     id: 2,
-    navName: "Size",
+    navName: "Meterials",
     icon: (
       <svg
         fill="currentColor"
@@ -38,12 +38,12 @@ export let navList = [
     ),
     subMenu: [
       {
-        navName: "Size Details",
-        link: "/size/size-details",
+        navName: "Add Meterials",
+        link: "/meterials/add-meterials",
       },
       {
-        navName: "View Size",
-        link: "/size/view-size",
+        navName: "View Meterials",
+        link: "/meterials/view-meterials",
       },
     ],
   },

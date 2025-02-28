@@ -250,9 +250,6 @@ export default function ViewSubSubCategory() {
           </div>
         </div>
       </div>
-
-
-
     </section>
   )
 }

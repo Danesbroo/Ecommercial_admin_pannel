@@ -65,7 +65,23 @@ export default function AddSubCategory() {
                 />
                 {errors.categoryImage && <p className="text-red-500">{errors.categoryImage.message}</p>}
               </div>
+
               <div className="w-2/3">
+              {/* Parent Category Dropdown */}
+              <div className="mb-5">
+                  <label className="block mb-5 text-md font-medium text-gray-900">
+                    Parent Category Name
+                  </label>
+                  <select
+                    name="parentCatSelectBox"
+                    className="border-2 border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                  >
+                    <option value="">--Select Category--</option>
+                    <option value="Mens">Men's</option>
+                    <option value="Women">Women</option>
+                    <option value="Sale">Sale</option>
+                  </select>
+                </div>
                 <div className="mb-5">
                   <label
                     htmlFor="categoryName"
@@ -82,22 +98,27 @@ export default function AddSubCategory() {
                   />
                   {errors.categoryName && <p className="text-red-500">{errors.categoryName.message}</p>}
                 </div>
-                {/* Parent Category Dropdown */}
+
                 <div className="mb-5">
-                  <label className="block mb-5 text-md font-medium text-gray-900">
-                    Parent Category Name
-                  </label>
-                  <select
-                    name="parentCatSelectBox"
-                    className="border-2 border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                  <label
+                    htmlFor="categoryName"
+                    className="block mb-2 text-md font-medium text-gray-900"
                   >
-                    <option value="">--Select Category--</option>
-                    <option value="Mens">Men's</option>
-                    <option value="Women">Women</option>
-                    <option value="Sale">Sale</option>
-                  </select>
+                    Order
+                  </label>
+                  <input
+                    type="text"
+                    {...register("Order", { required: "Category Order is required" })}
+                    id="categoryName"
+                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                    placeholder="Category Order"
+                  />
+                  {errors.Order && <p className="text-red-500">{errors.Order.message}</p>}
                 </div>
+                
               </div>
+
+
             </div>
             <button
               type="submit"

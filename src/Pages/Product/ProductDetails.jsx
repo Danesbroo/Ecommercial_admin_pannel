@@ -1,246 +1,330 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Breadcrumb from '../../common/Breadcrumb'
+import $ from "jquery";
+import "dropify/dist/css/dropify.min.css";
+import "dropify/dist/js/dropify.min.js";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export default function ProductDetails() {
+
+  useEffect(() => {
+    $(".dropify").dropify({
+      messages: {
+        default: "Drag and drop ",
+        replace: "Drag and drop ",
+        remove: "Remove",
+        error: "Oops, something went wrong"
+      }
+    });
+  }, []);
+
+  const [value, setValue] = useState('');
+
+
   return (
     <section className="w-full">
 
-        <Breadcrumb
-          path={"Product"}
-          path2={"Product Details"}
-          slash={"/"}
-        />
-        <div className="w-full min-h-[610px]">
-          <div className="max-w-[1220px] mx-auto py-5">
-            <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
-              Product Details
-            </h3>
-            <form className="border border-t-0 p-3 rounded-b-md border-slate-400">
-              <div className="mb-5">
+      <Breadcrumb
+        path={"Product"}
+        path2={"Product Details"}
+        slash={"/"}
+      />
+
+
+      <div className='w-full px-6 py-6  '>
+
+        <form >
+          <div className="grid grid-cols-3 gap-[10px] ">
+            <div className="for-images ">
+
+              <div className="">
                 <label
-                  for="base-input"
-                  className="block mb-5 text-md font-medium text-gray-900"
-                >
-                  Product Name
-                </label>
-                <input
-                  type="text"
-                  name='productName'
-                  id="base-input"
-                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3 "
-                  placeholder="Product Name"
-                />
-              </div>
-              <div className="mb-5">
-                <label
-                  for="base-input"
-                  className="block mb-5 text-md font-medium text-gray-900"
-                >
-                  Product Description
-                </label>
-                <textarea name='productDescription' id="message" rows="3" className=" resize-none block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Add Product Description....."></textarea>
-              </div>
-              <div className="mb-5">
-                <label
-                  for="base-input"
-                  className="block mb-5 text-md font-medium text-gray-900"
-                >
-                  Short Description
-                </label>
-                <textarea name='productShortDescription' id="message" rows="3" className=" resize-none block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Add Product Short Description....."></textarea>
-              </div>
-              <div className="mb-5">
-                <label
-                  for="base-input"
-                  className="block mb-5 text-md font-medium text-gray-900"
+                  htmlFor="categoryImage"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Product Image
                 </label>
-                <form className="max-w-full">
-                  <label for="file-input" className="sr-only">
-                    Choose file
-                  </label>
-                  <input
-                    type="file"
-                    name="pdImg-input"
-                    id="file-input"
-                    className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none  
-  file:bg-gray-50 file:border-0
-  file:me-4
-  file:py-3 file:px-4
-  "
-                  />
-                </form>
+                <input
+                  type="file"
+                  id="categoryImage"
+                  className="dropify"
+                  data-height="250"
+                />
+
               </div>
+
+              <div className="">
+                <label
+                  htmlFor="categoryImage"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Back Image
+                </label>
+                <input
+                  type="file"
+                  id="categoryImage"
+                  className="dropify"
+                  data-height="250"
+                />
+
+              </div>
+            </div>
+
+            <div className="middle">
+
               <div className="mb-5">
                 <label
-                  for="base-input"
-                  className="block mb-5 text-md font-medium text-gray-900"
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
                 >
-                Image Animation
+                  Prodct Name
                 </label>
-                <form className="max-w-full">
-                  <label for="file-input" className="sr-only">
-                    Choose file
-                  </label>
-                  <input
-                    type="file"
-                    name="animationImg-input"
-                    id="file-input"
-                    className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none  
-  file:bg-gray-50 file:border-0
-  file:me-4
-  file:py-3 file:px-4
-  "
-                  />
-                </form>
+                <input
+                  type="text"
+                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                  placeholder='Prodct Name'
+                />
               </div>
+
               <div className="mb-5">
                 <label
-                  for="base-input"
-                  className="block mb-5 text-md font-medium text-gray-900"
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
                 >
-                  Product Gallery
+                  Select Category
                 </label>
-                <form className="max-w-full">
-                  <label for="file-input" className="sr-only">
-                    Choose file
-                  </label>
-                  <input
-                    type="file"
-                    name="pdGalleryImg-input"
-                    id="file-input"
-                    className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none  
-  file:bg-gray-50 file:border-0
-  file:me-4
-  file:py-3 file:px-4
-  " multiple
-                  />
-                </form>
-              </div>
-              <form className='mb-5'>
-        <div className="grid sm:grid-cols-2 gap-8">
-          <div>
-          <label className="block mb-5 text-md font-medium text-gray-900">Price</label>
-          <input
-                  type="text"
-                  name='pdPrice'
-                  id="base-input"
-                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3 "
-                  placeholder="Product Price"
-                />
-          </div>
-          <div>
-          <label className="block mb-5 text-md font-medium text-gray-900">MRP</label>
-          <input
-                  type="text"
-                  name='pdMRP'
-                  id="base-input"
-                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3 "
-                  placeholder="Product MRP"
-                />
-          </div>
-          </div>
-            </form>
-            <div className="mb-5">
-                  <label
-                    for="base-input"
-                    className="block mb-5 text-md font-medium text-gray-900"
-                  >
-                    Select Parent Category
-                  </label>
+                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                  <option value="">Select Category</option>
+                  <optgroup label="Electronics">
+                    <option value="mobile">Mobile Phones</option>
+                    <option value="laptop">Laptops</option>
+                  </optgroup>
+                  <optgroup label="Clothing">
+                    <option value="men">Men's Wear</option>
+                    <option value="women">Women's Wear</option>
+                  </optgroup>
+                </select>
 
-                  <select
-                    id="default"
-                    name='parentCatSelectBox'
-                    className=" border-2 border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
-                  >
-                    <option selected>--Select Parent Category--</option>
-                    <option value="Mens">Men's</option>
-                    <option value="Women">Women</option>
-                    <option value="Sale">Sale</option>
-                  </select>
-                </div>
-            <div className="mb-5">
-                  <label
-                    for="base-input"
-                    className="block mb-5 text-md font-medium text-gray-900"
-                  >
-                    Select Sub Category
-                  </label>
-
-                  <select
-                    id="default"
-                    name='subParentCatSelectBox'
-                    className=" border-2 border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
-                  >
-                    <option selected>--Select Sub Category--</option>
-                    <option value="tShirt">T-shirt</option>
-                    <option value="Shirt">Shirt</option>
-                  </select>
-                </div>
-                <form className='mb-5'>
-        <div className="grid sm:grid-cols-2 gap-8">
-          <div>
-          <label className="block mb-5 text-md font-medium text-gray-900">Size</label>
-          <select
-                    id="default"
-                    name='pdSizeSelectBox'
-                    className=" border-2 border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
-                  >
-                    <option selected>--Select Size--</option>
-                    <option value="tShirt">S</option>
-                    <option value="Shirt">M</option>
-                    <option value="Shirt">L</option>
-                    <option value="Shirt">XL</option>
-                    <option value="Shirt">XXL</option>
-                  </select>
-          </div>
-          <div>
-          <label className="block mb-5 text-md font-medium text-gray-900">Color</label>
-          <select
-                    id="default"
-                    name='pdColorSelectBox'
-                    className=" border-2 border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
-                  >
-                    <option selected>--Select Color--</option>
-                    <option value="tShirt">Red</option>
-                    <option value="Shirt">Black</option>
-                    <option value="Shirt">Orange</option>
-                  </select>
-          </div>
-          </div>
-            </form>
-              <div className="pe-5 ps-1">
-                <span className="flex items-center gap-3">
-                  Status :
-                  <input
-                    id="link-radio"
-                    name='status'
-                    type="radio"
-                    value=""
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
-                  ></input>
-                  Active
-                  <input
-                    id="link-radio"
-                    name='status'
-                    type="radio"
-                    value=""
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
-                  ></input>
-                  Deactive
-                </span>
               </div>
-              <button
-                type="submit"
-                className="focus:outline-none my-10 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-              >
-                Add Product
-              </button>
-            </form>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Select Meterial
+                </label>
+                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                  <option value="">Nothing Selected</option>
+                  <option value="">Neem</option>
+                  <option value="">Babbul</option>
+                  <option value="">Neem</option>
+                  <option value="">Babbul</option>
+                  <option value="">Neem</option>
+                  <option value="">Babbul</option>
+                  <option value="">Neem</option>
+                  <option value="">Babbul</option>
+
+                </select>
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Select Prodcut Type
+                </label>
+                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                  <option value="">Nothing Selected</option>
+                  <option value="">Featured</option>
+                  <option value="">New Arrivals</option>
+                  <option value="">Onsale</option>
+
+
+                </select>
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Is Top Rated
+                </label>
+                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                  <option value="">Nothing Selected</option>
+                  <option value="">Yes</option>
+                  <option value="">No</option>
+
+                </select>
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Actual Price
+                </label>
+                <input
+                  type="text"
+                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                  placeholder='Actual Price'
+                />
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Total In Stocks
+                </label>
+                <input
+                  type="text"
+                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                  placeholder='Total In Stocks'
+                />
+              </div>
+
+
+
+            </div>
+
+            {/* for right */}
+            <div className="right-items">
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f] "
+                >
+                  Prodct Code
+                </label>
+                <input
+                  type="text"
+                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                  placeholder='Prodct Code'
+                />
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Select Sub Sub Category
+                </label>
+                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                  <option value="">Nothing Selected</option>
+
+                  <option value="mobile">Mobile Phones</option>
+                  <option value="laptop">Laptops</option>
+
+                  <option value="men">Men's Wear</option>
+                  <option value="women">Women's Wear</option>
+
+                </select>
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Select Color
+                </label>
+                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                  <option value="">Nothing Selected</option>
+
+                  <option value="">Red</option>
+                  <option value="">Blue</option>
+
+                  <option value="">Green</option>
+                  <option value="">Gray</option>
+
+                </select>
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Is Best Selling
+                </label>
+                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                  <option value="">Nothing Selected</option>
+                  <option value="">Yes</option>
+                  <option value="">No</option>
+
+                </select>
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Is Upsell
+                </label>
+                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                  <option value="">Nothing Selected</option>
+                  <option value="">Yes</option>
+                  <option value="">No</option>
+
+                </select>
+              </div>
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Sale Price
+                </label>
+                <input
+                  type="text"
+                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                  placeholder=' Sale Price'
+                />
+              </div>
+
+
+              <div className="mb-5">
+                <label
+                  htmlFor="categoryName"
+                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Order
+                </label>
+                <input
+                  type="text"
+                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                  placeholder='Order'
+                />
+              </div>
+
+
+            </div>
           </div>
-        </div>
-  </section>
+
+          <div className='py-[40px]'>
+            <label
+              htmlFor="categoryImage"
+              className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+            >
+              Description
+            </label>
+            <ReactQuill theme="snow" value={value} onChange={setValue} className='h-[200px]' />
+          </div>
+
+          <button class=" mt-5 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"> Create Product </button>
+
+        </form>
+
+      </div>
+    </section>
   )
 }

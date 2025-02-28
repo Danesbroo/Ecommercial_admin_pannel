@@ -13,8 +13,6 @@ import Login from "./Pages/LoginAuth/Login.jsx";
 import Profile from "./Pages/Profile.jsx";
 import AddColor from "./Pages/Color/AddColor.jsx";
 import ViewColor from "./Pages/Color/ViewColor.jsx";
-import SizeDetails from "./Pages/Size/SizeDetails.jsx";
-import ViewSize from "./Pages/Size/ViewSize.jsx";
 import AddCategory from "./Pages/Parent_Category/AddCategory.jsx";
 import ViewCategory from "./Pages/Parent_Category/ViewCategory.jsx";
 import AddSubCategory from "./Pages/Sub Category/AddSubCategory.jsx";
@@ -29,6 +27,8 @@ import SliderView from "./Pages/Slider/SliderView.jsx";
 import RootLayout from "./layout/RootLayout.jsx";
 import AddSubSubCategory from "./Pages/Sub Sub Category/AddSubSubCategory.jsx";
 import ViewSubSubCategory from "./Pages/Sub Sub Category/ViewSubSubCategory.jsx";
+import Meterials from "./Pages/Meterials/Meterials.jsx";
+import ViewMeterials from "./Pages/Meterials/ViewMeterials.jsx";
 
 
 
@@ -47,9 +47,9 @@ const route = createBrowserRouter(
           <Route path="add-color" element={<AddColor />}></Route>
           <Route path="view-color" element={<ViewColor />}></Route>
         </Route>
-        <Route path="size">
-          <Route path="size-details" element={<SizeDetails />}></Route>
-          <Route path="view-size" element={<ViewSize />}></Route>
+        <Route path="meterials">
+          <Route path="add-meterials" element={<Meterials />}></Route>
+          <Route path="view-meterials" element={<ViewMeterials />}></Route>
         </Route>
 
 

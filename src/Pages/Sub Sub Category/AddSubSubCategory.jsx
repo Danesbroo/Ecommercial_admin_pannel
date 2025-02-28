@@ -61,27 +61,13 @@ export default function AddSubSubCategory() {
                   {...register("categoryImage", { required: "Category image is required" })}
                   id="categoryImage"
                   className="dropify"
-                  data-height="250"
+                  data-height="260"
                 />
                 {errors.categoryImage && <p className="text-red-500">{errors.categoryImage.message}</p>}
               </div>
+
               <div className="w-2/3">
-                <div className="mb-5">
-                  <label
-                    htmlFor="categoryName"
-                    className="block mb-2 text-md font-medium text-gray-900"
-                  >
-                    Category Name
-                  </label>
-                  <input
-                    type="text"
-                    {...register("categoryName", { required: "Category name is required" })}
-                    id="categoryName"
-                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
-                    placeholder="Category Name"
-                  />
-                  {errors.categoryName && <p className="text-red-500">{errors.categoryName.message}</p>}
-                </div>
+                
                 {/* Parent Category Dropdown */}
                 <div className="mb-5">
                   <label className="block mb-5 text-md font-medium text-gray-900">
@@ -100,7 +86,7 @@ export default function AddSubSubCategory() {
                 {/* Parent Category Dropdown */}
                 <div className="mb-5">
                   <label className="block mb-5 text-md font-medium text-gray-900">
-                    Root Category Name
+                    Sub Category Name
                   </label>
                   <select
                     name="parentCatSelectBox"
@@ -111,6 +97,23 @@ export default function AddSubSubCategory() {
                     <option value="Women">Women</option>
                     <option value="Sale">Sale</option>
                   </select>
+                </div>
+
+                <div className="mb-5">
+                  <label
+                    htmlFor="categoryName"
+                    className="block mb-2 text-md font-medium text-gray-900"
+                  >
+                    Category Name
+                  </label>
+                  <input
+                    type="text"
+                    {...register("categoryName", { required: "Category name is required" })}
+                    id="categoryName"
+                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                    placeholder="Category Name"
+                  />
+                  {errors.categoryName && <p className="text-red-500">{errors.categoryName.message}</p>}
                 </div>
               </div>
             </div>
