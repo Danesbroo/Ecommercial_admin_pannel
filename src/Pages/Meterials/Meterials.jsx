@@ -7,11 +7,11 @@ import Footer from "../../common/Footer";
 export default function Meterials() {
   return (
     <>
-      <Breadcrumb path={"Size"} path2={"Size Details"} slash={"/"} />
+      <Breadcrumb path={"Meterial"} link={"/meterials/view-meterials"} path2={"Add"} slash={"/"} />
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
-            Add Meterials
+            Add Meterial
           </h3>
           <form className="border border-t-0 p-3 rounded-b-md border-slate-400">
             <div className="mb-5">
@@ -19,14 +19,14 @@ export default function Meterials() {
                 for="base-input"
                 className="block mb-5 text-md font-medium text-gray-900"
               >
-                Meterials Name
+                Meterial Name
               </label>
               <input
                 type="text"
                 name=""
                 id="base-input"
                 className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3 "
-                placeholder="Meterials Name"
+                placeholder="Meterial Name"
               />
             </div>
 
@@ -42,7 +42,7 @@ export default function Meterials() {
                 name=""
                 id="base-input"
                 className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3 "
-                placeholder="Meterials order"
+                placeholder="Meterial Order"
               />
             </div>
             

@@ -54,7 +54,7 @@ export default function AddCategory() {
             <div className="flex gap-5">
               <div className="w-1/3">
                 <label
-                  htmlFor="categoryImage"
+                  
                   className="block mb-2 text-md font-medium text-gray-900"
                 >
                   Category Image

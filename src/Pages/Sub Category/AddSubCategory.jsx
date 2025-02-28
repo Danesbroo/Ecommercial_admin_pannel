@@ -41,7 +41,7 @@ export default function AddSubCategory() {
 
   return (
     <section className="w-full">
-      <Breadcrumb path={"Sub Category"} path2={"Add Sub Category"} slash={"/"} />
+      <Breadcrumb path={"Sub Category"} link={'/category/sub-category/view'} path2={"Add"} slash={"/"} />
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
@@ -61,7 +61,7 @@ export default function AddSubCategory() {
                   {...register("categoryImage", { required: "Category image is required" })}
                   id="categoryImage"
                   className="dropify"
-                  data-height="250"
+                  data-height="230"
                 />
                 {errors.categoryImage && <p className="text-red-500">{errors.categoryImage.message}</p>}
               </div>
@@ -69,7 +69,7 @@ export default function AddSubCategory() {
               <div className="w-2/3">
               {/* Parent Category Dropdown */}
               <div className="mb-5">
-                  <label className="block mb-5 text-md font-medium text-gray-900">
+                  <label className="block mb-2 text-md font-medium text-gray-900">
                     Parent Category Name
                   </label>
                   <select
@@ -82,6 +82,7 @@ export default function AddSubCategory() {
                     <option value="Sale">Sale</option>
                   </select>
                 </div>
+
                 <div className="mb-5">
                   <label
                     htmlFor="categoryName"

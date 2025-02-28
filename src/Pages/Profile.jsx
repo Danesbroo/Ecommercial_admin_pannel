@@ -93,7 +93,7 @@ export default function Profile() {
                     type="file"
                     {...register("image", { required: "Image is required" })}
                     className="dropify"
-                    data-height="250"
+                    data-height="236"
                   />
                   {errors.image && <p className="text-red-500">{errors.image.message}</p>}
                 </div>

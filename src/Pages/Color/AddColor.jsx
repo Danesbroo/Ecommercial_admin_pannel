@@ -23,7 +23,7 @@ export default function AddColor() {
 
   return (
     <>
-      <Breadcrumb path={"Colors"} path2={"Add Color"} slash={"/"} />
+      <Breadcrumb path={"Color"} link={"/colors/view-color"} path2={"Add"} slash={"/"} />
       <div className="w-full">
         <div className="max-w-[1220px] mx-auto py-5">
           <h3 className="text-[20px] font-semibold bg-slate-100 py-2 px-3 rounded-t-md border border-slate-400">
