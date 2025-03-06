@@ -95,10 +95,14 @@ const route = createBrowserRouter(
         <Route path="orders">
           <Route path="orders" element={<Orders />}></Route>
         </Route>
+
+        
         <Route path="slider">
-          <Route path="slider-details" element={<SliderDetails />}></Route>
-          <Route path="slider-view" element={<SliderView />}></Route>
+          <Route path="add" element={<SliderDetails />}></Route>
+          <Route path="update/:id?" element={<SliderDetails />}></Route>
+          <Route path="view" element={<SliderView />}></Route>
         </Route>
+
       </Route>
     </>
   )

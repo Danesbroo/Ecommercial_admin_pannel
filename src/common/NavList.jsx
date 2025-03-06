@@ -207,12 +207,12 @@ export let navList = [
     ),
     subMenu: [
       {
-        navName: "Slider Details",
-        link: "/slider/slider-details",
+        navName: "Slider Add",
+        link: "/slider/add",
       },
       {
         navName: "Slider View",
-        link: "/slider/slider-view",
+        link: "/slider/view",
       },
     ],
   },

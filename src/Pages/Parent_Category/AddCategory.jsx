@@ -50,7 +50,7 @@ export default function AddCategory() {
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
             {updateIdState ? "Update Category" : "Add Category"}  
           </h3>
-          <form onSubmit={handleSubmit(onSubmit)} className="border border-t-0 p-3 rounded-b-md border-slate-400">
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
             <div className="flex gap-5">
               <div className="w-1/3">
                 <label

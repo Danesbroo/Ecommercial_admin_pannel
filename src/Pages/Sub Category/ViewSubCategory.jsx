@@ -25,7 +25,7 @@ export default function ViewCategory() {
               name="parentCatSelectBox"
               className="border  border-gray-300 text-gray-900  text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-3"
             >
-              <option value="">Select Category</option>
+              <option value="">Select Parent Category</option>
               <option value="Mens">Men's</option>
               <option value="Women">Women</option>
               <option value="Sale">Sale</option>
@@ -36,7 +36,7 @@ export default function ViewCategory() {
               type="text"
               id="simple-search"
               className="border  border-gray-300 text-gray-900  text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-3"
-              placeholder="Search branch name..."
+              placeholder="Search  name..."
               required
             />
           </div>
@@ -77,8 +77,8 @@ export default function ViewCategory() {
               View Sub Category
             </h3>
             <div className='flex justify-between '>
-              <div onClick={() => setactiveFilter(!activeFilter)} className=" cursor-pointer text-[white] mx-3 rounded-[50%] w-[40px] h-[40px] flex items-center justify-center bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                {activeFilter ? <FaFilter className='text-[18px]  ' /> : <MdFilterAltOff className='text-[18px]' />}
+              <div onClick={() => setactiveFilter(!activeFilter)} className="cursor-pointer text-[white] mx-3 rounded-[50%] w-[40px] h-[40px]  mx-3 rounded-[50%] w-[40px] h-[40px] flex items-center justify-center  text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                {activeFilter ? <FaFilter className='text-[18px]' /> : <MdFilterAltOff className='text-[18px]' />}
               </div>
 
               <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Change Status</button>
@@ -103,8 +103,12 @@ export default function ViewCategory() {
                         </div>
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Name
+                      Parent Category Name
                       </th>
+                      <th scope="col" class="px-0 py-3">
+                        Sub Category Name
+                      </th>
+                      
                       <th scope="col" class=" w-[12%] ">
                         Image
                       </th>
@@ -127,13 +131,18 @@ export default function ViewCategory() {
                           <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                         </div>
                       </td>
-                      <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                      <td scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
 
                         <div class="py-4">
-                          <div class="text-base font-semibold">Neil Sims</div>
+                          Shoe
 
                         </div>
-                      </th>
+                      </td>
+                      <td class=" py-4">
+                        Men
+
+                      </td>
+
                       <td class=" py-4">
                         <img class="w-10 h-10 rounded-full" src="https://packshifts.in/images/iso.png" alt="Jese image" />
                       </td>

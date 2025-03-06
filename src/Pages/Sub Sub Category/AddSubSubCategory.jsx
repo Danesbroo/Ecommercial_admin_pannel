@@ -47,7 +47,7 @@ export default function AddSubSubCategory() {
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
             Add Sub Category
           </h3>
-          <form onSubmit={handleSubmit(onSubmit)} className="border border-t-0 p-3 rounded-b-md border-slate-400">
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
             <div className="flex gap-5">
               <div className="w-1/3">
                 <label
@@ -77,7 +77,7 @@ export default function AddSubSubCategory() {
                     name="parentCatSelectBox"
                     className="border-2 border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                   >
-                    <option value="">--Select Category--</option>
+                    <option value="">Select Category</option>
                     <option value="Mens">Men's</option>
                     <option value="Women">Women</option>
                     <option value="Sale">Sale</option>
@@ -92,7 +92,7 @@ export default function AddSubSubCategory() {
                     name="parentCatSelectBox"
                     className="border-2 border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                   >
-                    <option value="">--Select Category--</option>
+                    <option value="">Select Category</option>
                     <option value="Mens">Men's</option>
                     <option value="Women">Women</option>
                     <option value="Sale">Sale</option>
@@ -114,6 +114,23 @@ export default function AddSubSubCategory() {
                     placeholder="Category Name"
                   />
                   {errors.categoryName && <p className="text-red-500">{errors.categoryName.message}</p>}
+                </div>
+
+                <div className="mb-5">
+                  <label
+                    htmlFor="order"
+                    className="block mb-2 text-md font-medium text-gray-900"
+                  >
+                    Order
+                  </label>
+                  <input
+                    type="number"
+                    {...register("order", { required: "Order is required" })}
+                    id="order"
+                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                    placeholder="Order"
+                  />
+                  {errors.order && <p className="text-red-500">{errors.order.message}</p>}
                 </div>
               </div>
             </div>

@@ -47,7 +47,7 @@ export default function AddSubCategory() {
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
             Add Sub Category
           </h3>
-          <form onSubmit={handleSubmit(onSubmit)} className="border border-t-0 p-3 rounded-b-md border-slate-400">
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
             <div className="flex gap-5">
               <div className="w-1/3">
                 <label
@@ -76,7 +76,7 @@ export default function AddSubCategory() {
                     name="parentCatSelectBox"
                     className="border-2 border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                   >
-                    <option value="">--Select Category--</option>
+                    <option value="">Select Category</option>
                     <option value="Mens">Men's</option>
                     <option value="Women">Women</option>
                     <option value="Sale">Sale</option>
