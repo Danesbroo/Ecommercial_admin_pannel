@@ -8,10 +8,10 @@ import { MdFilterAltOff, MdModeEdit } from 'react-icons/md'
 import { FaFilter } from 'react-icons/fa'
 
 export default function ViewMeterials() {
-    let [activeFilter, setactiveFilter] = useState(false);
+    let [activeFilter, setactiveFilter] = useState(true);
     return (
         <>
-            <Breadcrumb path={"Meterial"} link={"/meterials/view-meterials"} path2={"View"} slash={"/"} />
+            <Breadcrumb path={"Material"} link={"/materials/view-materials"} path2={"View"} slash={"/"} />
             <div className="w-full h-[610px]">
                 <div className="max-w-[1220px] mx-auto py-2">
 
@@ -58,10 +58,10 @@ export default function ViewMeterials() {
                         <div className="max-w-[1220px] mx-auto py-5">
                             <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
                                 <h3 className="text-[26px] font-semibold" >
-                                    View Meterials
+                                    View Meterial
                                 </h3>
                                 <div className='flex justify-between '>
-                                    <div onClick={() => setactiveFilter(!activeFilter)} className=" mx-3 rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <div onClick={() => setactiveFilter(!activeFilter)} className="cursor-pointer mx-3 rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         {activeFilter ? <FaFilter className='text-[18px]' /> : <MdFilterAltOff className='text-[18px]' />}
                                     </div>
 
@@ -87,11 +87,11 @@ export default function ViewMeterials() {
                                                         </div>
                                                     </th>
                                                     <th scope="col" class="px-6 py-3">
-                                                        Meterials Name
+                                                        Material Name
                                                     </th>
 
                                                     <th scope="col" class=" w-[12%] ">
-                                                        Meterials Order
+                                                        Material Order
                                                     </th>
                                                     <th scope="col" class="w-[11%]">
                                                         Status
@@ -122,14 +122,14 @@ export default function ViewMeterials() {
                                                     </td>
                                                     <td class=" py-4">
 
-                                                    <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-1.5 text-center me-2 mb-2">Active</button>
+                                                        <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-1.5 text-center me-2 mb-2">Active</button>
                                                     </td>
                                                     <td class=" py-4">
 
-                                                        <Link to={`/category/update/${123}`} >
+                                                        <Link to={`/meterial/update/${123}`} >
                                                             <div className="rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                                                        <MdModeEdit className='text-[18px]' />
-                                                                                      </div>
+                                                                <MdModeEdit className='text-[18px]' />
+                                                            </div>
                                                         </Link>
                                                     </td>
                                                 </tr>

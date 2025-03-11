@@ -4,18 +4,16 @@ import { Link } from 'react-router-dom';
 import { MdFilterAltOff, MdModeEdit, MdModeEditOutline } from 'react-icons/md';
 import { CiEdit } from 'react-icons/ci';
 import { FaFilter } from 'react-icons/fa';
-// import { MdModeEditOutline } from "react-icons/md";
 
-export default function ViewCategory() {
-  // let [orderModal, setOrderModal] = useState(false);
+export default function TestimonialView() {
 
   let [activeFilter, setactiveFilter] = useState(true);
   return (
     <section className="w-full">
 
-      <Breadcrumb path={"Color"} link={"/colors/view-color"} path2={"View"} slash={"/"} />
+      <Breadcrumb path={"Category"} link={'/category/view'} path2={"View"} slash={"/"} />
 
-      <div className={`bg-gray-50 px-2 py-5 max-w-[1220px] duration-[1s] mx-auto mt-10 ${activeFilter ? "hidden" : "block"}`}>
+      <div className={` rounded-lg border border-gray-300 px-5 py-5 max-w-[1220px] mx-auto mt-10 ${activeFilter ? "hidden" : "block"}`}>
 
         <form className="flex max-w-sm">
           <div className="relative w-full">
@@ -23,7 +21,7 @@ export default function ViewCategory() {
               type="text"
               id="simple-search"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search  name..."
+              placeholder="Search Name"
               required
             />
           </div>
@@ -56,10 +54,10 @@ export default function ViewCategory() {
         <div className="max-w-[1220px] mx-auto py-5">
           <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
             <h3 className="text-[26px] font-semibold" >
-              View Color
+              View Testimonial
             </h3>
             <div className='flex justify-between '>
-              <div onClick={() => setactiveFilter(!activeFilter)} className="cursor-pointer text-white mx-3 rounded-[50%] w-[40px] h-[40px] flex items-center justify-center bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <div onClick={() => setactiveFilter(!activeFilter)} className="cursor-pointer text-[white] mx-3 rounded-[50%] w-[40px] h-[40px]  mx-3 rounded-[50%] w-[40px] h-[40px] flex items-center justify-center  text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {activeFilter ? <FaFilter className='text-[18px]' /> : <MdFilterAltOff className='text-[18px]' />}
               </div>
 
@@ -85,10 +83,16 @@ export default function ViewCategory() {
                         </div>
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Color Name
+                        Name
                       </th>
                       <th scope="col" class=" w-[10%] ">
-                        Code
+                        Image
+                      </th>
+                      <th scope="col" class=" w-[15%] ">
+                        Designation
+                      </th>
+                      <th scope="col" class=" w-[8%] ">
+                        Rating
                       </th>
                       <th scope="col" class=" w-[8%] ">
                         Order
@@ -112,12 +116,18 @@ export default function ViewCategory() {
                       <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
 
                         <div class="py-4">
-                          <div class="text-base font-semibold">Red</div>
+                          <div class="text-base font-semibold">Neil Sims</div>
 
                         </div>
                       </th>
                       <td class=" py-4">
-                        #er33rv
+                        <img class="w-10 h-10 rounded-full" src="https://packshifts.in/images/iso.png" alt="Jese image" />
+                      </td>
+                      <td class=" py-4">
+                        CEO Of SunPark
+                      </td>
+                      <td class=" py-4">
+                        5
                       </td>
                       <td class=" py-4">
                         1
@@ -128,13 +138,57 @@ export default function ViewCategory() {
                       </td>
                       <td class=" py-4">
 
-                        <Link to={`/color/update/${123}`} >
+                        <Link to={`/testimonial/update/${123}`} >
                           <div className="rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <MdModeEdit className='text-[18px]' />
                           </div>
                         </Link>
                       </td>
                     </tr>
+
+                    <tr class="bg-white  dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <td class="w-4 p-4">
+                        <div class="flex items-center">
+                          <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                          <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                        </div>
+                      </td>
+                      <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+
+                        <div class="py-4">
+                          <div class="text-base font-semibold">Neil Sims</div>
+
+                        </div>
+                      </th>
+                      <td class=" py-4">
+                        <img class="w-10 h-10 rounded-full" src="https://packshifts.in/images/iso.png" alt="Jese image" />
+                      </td>
+                      <td class=" py-4">
+                        CEO Of SunPark
+                      </td>
+                      <td class=" py-4">
+                        5
+                      </td>
+                      <td class=" py-4">
+                        1
+                      </td>
+                      <td class=" py-4">
+
+
+
+                        <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-1.5 text-center me-2 mb-2">Deactive</button>
+                      </td>
+                      <td class=" py-4">
+
+                        <Link to={`/category/update/${123}`} >
+                          <div className="rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <MdModeEdit className='text-[18px]' />
+                          </div>
+                        </Link>
+                      </td>
+                    </tr>
+
+
 
 
 

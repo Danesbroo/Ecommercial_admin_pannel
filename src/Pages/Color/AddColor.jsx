@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Breadcrumb from "../../common/Breadcrumb";
 import { ChromePicker } from "react-color";
+import { useParams } from "react-router-dom";
 
 export default function AddColor() {
   const [color, setColor] = useState("#000000");
@@ -21,9 +22,43 @@ export default function AddColor() {
     alert(`Color Added: ${colorName} - ${color}`);
   };
 
+  // update work
+    const [updateIdState,setUpdateIdState]=useState(false)
+    let updateId=useParams().id
+    useEffect(()=>{
+      if(updateId==undefined){
+        setUpdateIdState(false)
+      }
+      else{
+        setUpdateIdState(true)
+      }
+    },[updateId])
+
   return (
     <>
-      <Breadcrumb path={"Color"} link={"/colors/view-color"} path2={"Add"} slash={"/"} />
+    <nav className="flex border-b-2" aria-label="Breadcrumb">
+          <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <li className="inline-flex items-center ">
+              <Link href={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
+                Home
+              </Link>
+            </li>
+            <li>
+              <div className="flex items-center">
+                /
+                <Link href={link} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">{path}</Link>
+              </div>
+            </li>
+            <li aria-current="page">
+              <div className="flex items-center">
+                {slash}
+                <span className="ms-1 text-md font-medium text-gray-500 md:ms-2">{path2}</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      {/* <Breadcrumb path={"Color"} link={"/colors/view-color"} path2={"Add"} slash={"/"} /> */}
+
       <div className="w-full">
         <div className="max-w-[1220px] mx-auto py-5">
           <h3 className="text-[20px] font-semibold bg-slate-100 py-2 px-3 rounded-t-md border border-slate-400">
@@ -95,7 +130,7 @@ export default function AddColor() {
               type="submit"
               className="focus:outline-none my-10 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
             >
-              Add Color
+           {updateIdState ? "Update Color" : "Add Color"}  
             </button>
           </form>
         </div>

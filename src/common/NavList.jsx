@@ -1,3 +1,5 @@
+import { FaUserEdit } from "react-icons/fa";
+
 export let navList = [
   {
     id: 1,
@@ -15,17 +17,19 @@ export let navList = [
     subMenu: [
       {
         navName: "Add Color",
-        link: "/colors/add-color",
+        link: "/color/add",
       },
       {
         navName: "View Color",
-        link: "/colors/view-color",
+        link: "/color/view",
       },
     ],
   },
+
+
   {
     id: 2,
-    navName: "Meterials",
+    navName: "Material",
     icon: (
       <svg
         fill="currentColor"
@@ -38,12 +42,12 @@ export let navList = [
     ),
     subMenu: [
       {
-        navName: "Add Meterials",
-        link: "/meterials/add-meterials",
+        navName: "Add Material",
+        link: "/material/add",
       },
       {
-        navName: "View Meterials",
-        link: "/meterials/view-meterials",
+        navName: "View Material",
+        link: "/material/view",
       },
     ],
   },
@@ -79,9 +83,9 @@ export let navList = [
         fill="currentColor"
         className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 576 512"
+        viewBox="0 0 512 512"
       >
-        <path d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48l45.5 0c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5L488 384c13.3 0 24-10.7 24-24s-10.7-24-24-24l-288.3 0c-11.5 0-21.4-8.2-23.6-19.5L170.7 288l288.5 0c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32L360 32l0 102.1 23-23c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-64 64c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l23 23L312 32 120.1 32C111 12.8 91.6 0 69.5 0L24 0zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
+        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L96 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
       </svg>
     ),
     subMenu: [
@@ -103,9 +107,9 @@ export let navList = [
         fill="currentColor"
         className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 576 512"
+        viewBox="0 0 512 512"
       >
-        <path d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48l45.5 0c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5L488 384c13.3 0 24-10.7 24-24s-10.7-24-24-24l-288.3 0c-11.5 0-21.4-8.2-23.6-19.5L170.7 288l288.5 0c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32L360 32l0 102.1 23-23c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-64 64c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l23 23L312 32 120.1 32C111 12.8 91.6 0 69.5 0L24 0zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
+        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L96 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
       </svg>
     ),
     subMenu: [
@@ -207,17 +211,33 @@ export let navList = [
     ),
     subMenu: [
       {
-        navName: "Slider Add",
+        navName: "Add Slider",
         link: "/slider/add",
       },
       {
-        navName: "Slider View",
+        navName: "View Slider ",
         link: "/slider/view",
       },
     ],
   },
+  ,
   {
     id: 10,
+    navName: "Testimonial",
+    icon: <FaUserEdit className="text-[20px]" />,
+    subMenu: [
+      {
+        navName: "Add Testimonial",
+        link: "/testimonial/add",
+      },
+      {
+        navName: "View Testimonial",
+        link: "/testimonial/view",
+      },
+    ],
+  },
+  {
+    id: 11,
     navName: "Terms & Conditions",
     icon: (
       <svg

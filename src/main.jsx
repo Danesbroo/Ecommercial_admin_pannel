@@ -29,6 +29,9 @@ import AddSubSubCategory from "./Pages/Sub Sub Category/AddSubSubCategory.jsx";
 import ViewSubSubCategory from "./Pages/Sub Sub Category/ViewSubSubCategory.jsx";
 import Meterials from "./Pages/Meterials/Meterials.jsx";
 import ViewMeterials from "./Pages/Meterials/ViewMeterials.jsx";
+import Company_profile from "./Pages/Company-profile.jsx";
+import TestimonialAdd from "./Pages/Testimonial/TestimonialAdd.jsx";
+import TestimonialView from "./Pages/Testimonial/TestimonialView.jsx";
 
 
 
@@ -42,14 +45,17 @@ const route = createBrowserRouter(
       <Route element={<RootLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="company-profile" element={<Company_profile />} />
         
-        <Route path="colors">
-          <Route path="add-color" element={<AddColor />}></Route>
-          <Route path="view-color" element={<ViewColor />}></Route>
+        <Route path="color">
+          <Route path="add" element={<AddColor />}></Route>
+          <Route path="update/:id?" element={<AddColor />}></Route>
+          <Route path="view" element={<ViewColor />}></Route>
         </Route>
-        <Route path="meterials">
-          <Route path="add-meterials" element={<Meterials />}></Route>
-          <Route path="view-meterials" element={<ViewMeterials />}></Route>
+        <Route path="material">
+          <Route path="add" element={<Meterials />}></Route>
+          <Route path="update/:id?" element={<Meterials />}></Route>
+          <Route path="view" element={<ViewMeterials />}></Route>
         </Route>
 
 
@@ -71,27 +77,17 @@ const route = createBrowserRouter(
           <Route path="update/:id?" element={<AddSubSubCategory />}></Route>
           <Route path="view" element={<ViewSubSubCategory />}></Route>
         </Route>
-
-        {/* subMenu: [
-      {
-        navName: "Add Sub Sub Category",
-        link: "/category/sub-sub-category/add",
-      },
-      {
-        navName: "View Sub Sub Category",
-        link: "/category/sub-sub-category/view",
-      }, */}
-
-
         
         <Route path="product">
           <Route path="product-details" element={<ProductDetails />}></Route>
           <Route path="product-items" element={<ProductItems />}></Route>
         </Route>
+
         <Route path="story">
           <Route path="story-details" element={<StoryDetails />}></Route>
           <Route path="story-view" element={<StoryView />}></Route>
         </Route>
+
         <Route path="orders">
           <Route path="orders" element={<Orders />}></Route>
         </Route>
@@ -103,6 +99,12 @@ const route = createBrowserRouter(
           <Route path="view" element={<SliderView />}></Route>
         </Route>
 
+
+        <Route path="testimonial">
+          <Route path="add" element={<TestimonialAdd />}></Route>
+          <Route path="update/:id?" element={<TestimonialAdd />}></Route>
+          <Route path="view" element={<TestimonialView />}></Route>
+        </Route>
       </Route>
     </>
   )
