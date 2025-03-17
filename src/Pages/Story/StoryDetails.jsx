@@ -1,122 +1,156 @@
-import React from 'react'
-import Breadcrumb from '../../common/Breadcrumb'
+
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import Breadcrumb from "../../common/Breadcrumb";
+import $ from "jquery";
+import "dropify/dist/css/dropify.min.css";
+import "dropify/dist/js/dropify.min.js";
+import { Link, useParams } from "react-router-dom";
 
 export default function StoryDetails() {
+  useEffect(() => {
+    $(".dropify").dropify({
+      messages: {
+        default: "Drag and drop ",
+        replace: "Drag and drop ",
+        remove: "Remove",
+        error: "Oops, something went wrong"
+      }
+    });
+  }, []);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  // update work
+  const [updateIdState, setUpdateIdState] = useState(false)
+  let updateId = useParams().id
+  useEffect(() => {
+    if (updateId == undefined) {
+      setUpdateIdState(false)
+    }
+    else {
+      setUpdateIdState(true)
+    }
+  }, [updateId])
+
+
+
   return (
     <section className="w-full">
-          <Breadcrumb
-            path={"Story"}
-            path2={"Story Details"}
-            slash={"/"}
-          />
-          <div className="w-full min-h-[610px]">
-            <div className="max-w-[1220px] mx-auto py-5">
-              <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
-                Our Story's
-              </h3>
-              <form className="border border-t-0 p-3 rounded-b-md border-slate-400">
+      <nav className="flex border-b-2" aria-label="Breadcrumb">
+            <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+              <li className="inline-flex items-center ">
+                <Link href={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <div className="flex items-center">
+                  /
+                  <Link to={"/why-choose-us/view"} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Why Choose Us</Link>
+                </div>
+              </li>
+              <li aria-current="page">
+                <div className="flex items-center">
+                 / {updateIdState ? "Update" : "Add"}
+                </div>
+              </li>
+            </ol>
+          </nav>
+      {/* <Breadcrumb path={"Why Choose Us"} path2={updateIdState ? "Update" : "Add"} link={"/why-choose-us/view"} slash={"/"} /> */}
+
+      <div className="w-full min-h-[610px]">
+        <div className="max-w-[1220px] mx-auto py-5">
+          <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
+            {updateIdState ? "Update Why Choose Us" : "Add Why Choose Us"}
+          </h3>
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
+            <div className="flex gap-5">
+              <div className="w-1/3">
+                <label
+
+                  className="block mb-0 text-md font-medium text-gray-900"
+                >
+                  Choose Image
+                </label>
+                <input
+                  type="file"
+                  {...register("Image", { required: "image is required" })}
+                  id="Image"
+                  className="dropify"
+                  data-height="250"
+                />
+                {errors.Image && <p className="text-red-500">{errors.Image.message}</p>}
+              </div>
+              <div className="w-2/3">
                 <div className="mb-5">
                   <label
-                    for="base-input"
-                    className="block mb-5 text-md font-medium text-gray-900"
+                    htmlFor="Title"
+                    className="block  text-md font-medium text-gray-900"
                   >
-                    Story Name
+                    Title
                   </label>
                   <input
                     type="text"
-                    name='storyName'
-                    id="base-input"
-                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3 "
-                    placeholder="Story Name"
+                    {...register("Title", { required: "Title is required" })}
+                    id="Title"
+                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                    placeholder="Title"
                   />
+                  {errors.Title && <p className="text-red-500">{errors.Title.message}</p>}
                 </div>
                 <div className="mb-5">
                   <label
-                    for="base-input"
-                    className="block mb-5 text-md font-medium text-gray-900"
+                    htmlFor="order"
+                    className="block mb-0 text-md font-medium text-gray-900"
                   >
-                    Image
+                    Order
                   </label>
-                  <form className="max-w-full">
-                    <label for="file-input" className="sr-only">
-                      Choose file
-                    </label>
-                    <input
-                      type="file"
-                      name="storyImg-input"
-                      id="file-input"
-                      className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none  
-    file:bg-gray-50 file:border-0
-    file:me-4
-    file:py-3 file:px-4
-    "
-                      multiple
-                    />
-                  </form>
+                  <input
+                    type="number"
+                    {...register("order", { required: "Order is required" })}
+                    id="order"
+                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                    placeholder="Order"
+                  />
+                  {errors.order && <p className="text-red-500">{errors.order.message}</p>}
                 </div>
+
+
                 <div className="mb-5">
                   <label
-                    for="base-input"
-                    className="block mb-5 text-md font-medium text-gray-900"
-                  >
-                    Banner Image
-                  </label>
-                  <form className="max-w-full">
-                    <label for="file-input" className="sr-only">
-                      Choose file
-                    </label>
-                    <input
-                      type="file"
-                      name="bannerImg-input"
-                      id="file-input"
-                      className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none  
-    file:bg-gray-50 file:border-0
-    file:me-4
-    file:py-3 file:px-4
-    "
-                      multiple
-                    />
-                  </form>
-                </div>
-                <div className="mb-5">
-                  <label
-                    for="base-input"
-                    className="block mb-5 text-md font-medium text-gray-900"
+                    htmlFor="Description"
+                    className="block mb-0 text-md font-medium text-gray-900"
                   >
                     Description
                   </label>
-                  <textarea name='storyDescription' id="message" rows="3" className=" resize-none block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Description....."></textarea>
+                  <textarea
+                    {...register("Description", { required: "Description is required" })}
+                    id="Description"
+                    className="text-[19px] resize-none h-[100px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                    placeholder="Description"
+                  > </textarea>
+                  {errors.Description && <p className="text-red-500">{errors.Description.message}</p>}
                 </div>
-                <div className="pe-5 ps-1">
-                  <span className="flex items-center gap-3">
-                    Status :
-                    <input
-                      id="link-radio"
-                      name='status'
-                      type="radio"
-                      value=""
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
-                    ></input>
-                    Active
-                    <input
-                      id="link-radio"
-                      name='status'
-                      type="radio"
-                      value=""
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
-                    ></input>
-                    Deactive
-                  </span>
-                </div>
-                <button
-                  type="submit"
-                  className="focus:outline-none my-10 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-                >
-                  Add Story
-                </button>
-              </form>
+              </div>
             </div>
-          </div>
+            <button
+              type="submit"
+              className="focus:outline-none my-5 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5"
+            >
+              {updateIdState ? "Update Category" : "Add Category"}
+            </button>
+          </form>
+        </div>
+      </div>
     </section>
-  )
+  );
 }

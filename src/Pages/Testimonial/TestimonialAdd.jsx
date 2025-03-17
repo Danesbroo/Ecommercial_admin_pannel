@@ -52,7 +52,7 @@ export default function TestimonialAdd() {
                             <div className="w-1/3">
                                 <label
 
-                                    className="block mb-2 text-md font-medium text-gray-900"
+                                    className="block  text-md font-medium text-gray-900"
                                 >
                                     Choose Image
                                 </label>

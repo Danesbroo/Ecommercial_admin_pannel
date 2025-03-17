@@ -1,6 +1,36 @@
-import { FaUserEdit } from "react-icons/fa";
+import { FaCommentAlt, FaLocationArrow, FaUser, FaUserEdit } from "react-icons/fa";
+import { FcFaq } from "react-icons/fc";
 
 export let navList = [
+  
+  {
+    id: 23,
+    navName: "Users",
+    icon: <FaUser className="text-[20px]  " />,
+    subMenu: [
+     
+      {
+        navName: "View User",
+        link: "/user",
+      },
+    ],
+  },
+   
+  {
+    id: 24,
+    navName: "Enquirys",
+    icon: <FaCommentAlt  className="text-[20px]  " />,
+    subMenu: [
+      {
+        navName: "Contact Enquirys",
+        link: "/enquiry",
+      },
+      {
+        navName: "Newsletters",
+        link: "/newsletter",
+      },
+    ],
+  },
   {
     id: 1,
     navName: "Colors",
@@ -29,7 +59,7 @@ export let navList = [
 
   {
     id: 2,
-    navName: "Material",
+    navName: "Materials",
     icon: (
       <svg
         fill="currentColor"
@@ -53,7 +83,7 @@ export let navList = [
   },
   {
     id: 3,
-    navName: "Parent Category",
+    navName: "Parent Categorys",
     icon: (
       <svg
         fill="currentColor"
@@ -77,7 +107,7 @@ export let navList = [
   },
   {
     id: 4,
-    navName: "  Sub Category",
+    navName: "  Sub Categorys",
     icon: (
       <svg
         fill="currentColor"
@@ -101,7 +131,7 @@ export let navList = [
   },
   {
     id: 5,
-    navName: "Sub Sub Category",
+    navName: "Sub Sub Categorys",
     icon: (
       <svg
         fill="currentColor"
@@ -126,7 +156,7 @@ export let navList = [
 
   {
     id: 6,
-    navName: "Product",
+    navName: "Products",
     icon: (
       <svg
         className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -140,18 +170,18 @@ export let navList = [
     ),
     subMenu: [
       {
-        navName: "Product Details",
+        navName: "Add Product",
         link: "/product/product-details",
       },
       {
-        navName: "Product Items",
+        navName: "view Product",
         link: "/product/product-items",
       },
     ],
   },
   {
     id: 7,
-    navName: "Story",
+    navName: "Why Choose Us",
     icon: (
       <svg
         fill="currentColor"
@@ -164,12 +194,12 @@ export let navList = [
     ),
     subMenu: [
       {
-        navName: "Story Details",
-        link: "/story/story-details",
+        navName: "Add Why Choose Us",
+        link: "/why-choose-us/add",
       },
       {
-        navName: "Story View",
-        link: "/story/story-view",
+        navName: "View Why Choose Us",
+        link: "/why-choose-us/view",
       },
     ],
   },
@@ -198,7 +228,7 @@ export let navList = [
   },
   {
     id: 9,
-    navName: "Slider",
+    navName: "Sliders",
     icon: (
       <svg
         fill="currentColor"
@@ -220,10 +250,25 @@ export let navList = [
       },
     ],
   },
+  {
+    id: 19,
+    navName: "Locations",
+    icon: <FaLocationArrow />,
+    subMenu: [
+      {
+        navName: "Add Location",
+        link: "/location/add",
+      },
+      {
+        navName: "View Location ",
+        link: "/location/view",
+      },
+    ],
+  },
   ,
   {
     id: 10,
-    navName: "Testimonial",
+    navName: "Testimonials",
     icon: <FaUserEdit className="text-[20px]" />,
     subMenu: [
       {
@@ -233,6 +278,21 @@ export let navList = [
       {
         navName: "View Testimonial",
         link: "/testimonial/view",
+      },
+    ],
+  },
+  {
+    id: 22,
+    navName: "Faqs",
+    icon: <FcFaq  className="text-[20px]  " />,
+    subMenu: [
+      {
+        navName: "Add Faq",
+        link: "/faq/add",
+      },
+      {
+        navName: "View Faq",
+        link: "/faq/view",
       },
     ],
   },

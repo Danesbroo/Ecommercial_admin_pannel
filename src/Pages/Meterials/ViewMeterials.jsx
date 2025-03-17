@@ -91,7 +91,7 @@ export default function ViewMeterials() {
                                                     </th>
 
                                                     <th scope="col" class=" w-[12%] ">
-                                                        Material Order
+                                                        Order
                                                     </th>
                                                     <th scope="col" class="w-[11%]">
                                                         Status

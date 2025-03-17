@@ -42,7 +42,7 @@ export default function Company_profile() {
                         <div className="w-1/3">
                             <label
 
-                                className="block mb-2 text-md font-medium text-gray-900"
+                                className="block  text-md font-medium text-gray-900"
                             >
                                 Category Image
                             </label>
@@ -59,7 +59,7 @@ export default function Company_profile() {
                             <div className="">
                                 <label
                                     htmlFor="Name"
-                                    className="block mb-2 text-md font-medium text-gray-900"
+                                    className="block  text-md font-medium text-gray-900"
                                 >
                                     Name
                                 </label>
@@ -75,7 +75,7 @@ export default function Company_profile() {
                             <div className="">
                                 <label
                                     htmlFor="Email"
-                                    className="block mb-2 text-md font-medium text-gray-900"
+                                    className="block  text-md font-medium text-gray-900"
                                 >
                                     Email
                                 </label>
@@ -92,7 +92,7 @@ export default function Company_profile() {
                             <div className="">
                                 <label
                                     htmlFor="Mobile_Number"
-                                    className="block mb-2 text-md font-medium text-gray-900"
+                                    className="block  text-md font-medium text-gray-900"
                                 >
                                     Mobile Number
                                 </label>
@@ -109,7 +109,7 @@ export default function Company_profile() {
                     </div>
 
                     <div className='my-2'>
-                        <label for="Address" class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                        <label for="Address" class=" block  text-sm font-medium text-gray-900 dark:text-white">Address</label>
                         <textarea id="Address"  rows="4"
                         {...register("Address", { required: " Address is required" })}
                          class="block p-2.5 w-full text-sm resize-none  rounded-lg border-2 border-gray-300 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Address"></textarea>
@@ -119,7 +119,7 @@ export default function Company_profile() {
                     <div className='my-2'>
                         <label for="Google Map URL"
                         {...register("Google", { required: " Google Map URL is required" })}
-                         class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Google Map URL</label>
+                         class=" block  text-sm font-medium text-gray-900 dark:text-white">Google Map URL</label>
                         <textarea id="Google Map URL" rows="4" class="resize-none block p-2.5 w-full text-sm   rounded-lg border-2 border-gray-300 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Google Map URL"></textarea>
                         {errors.Google && <p className="text-red-500">{errors.Google.message}</p>}
                     </div>

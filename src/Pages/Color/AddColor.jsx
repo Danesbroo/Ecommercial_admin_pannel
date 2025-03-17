@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "../../common/Breadcrumb";
 import { ChromePicker } from "react-color";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function AddColor() {
   const [color, setColor] = useState("#000000");
@@ -46,13 +46,12 @@ export default function AddColor() {
             <li>
               <div className="flex items-center">
                 /
-                <Link href={link} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">{path}</Link>
+                <Link href={"/color/view"} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Color</Link>
               </div>
             </li>
             <li aria-current="page">
               <div className="flex items-center">
-                {slash}
-                <span className="ms-1 text-md font-medium text-gray-500 md:ms-2">{path2}</span>
+                / Add
               </div>
             </li>
           </ol>
@@ -72,7 +71,7 @@ export default function AddColor() {
             <div className="mb-5">
               <label
                 htmlFor="colorName"
-                className="block mb-2 text-md font-medium text-gray-900"
+                className="block  text-md font-medium text-gray-900"
               >
                 Color Name
               </label>
@@ -92,7 +91,7 @@ export default function AddColor() {
             <div className="mb-5">
               <label
                 htmlFor="colorPicker"
-                className="block mb-2 text-md font-medium text-gray-900"
+                className="block  text-md font-medium text-gray-900"
               >
                 Color Picker
               </label>
@@ -109,7 +108,7 @@ export default function AddColor() {
             <div className="mb-5">
               <label
                 htmlFor="colorOrder"
-                className="block mb-2 text-md font-medium text-gray-900"
+                className="block  text-md font-medium text-gray-900"
               >
                 Order
               </label>

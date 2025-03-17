@@ -41,7 +41,7 @@ export default function ProductDetails() {
               <div className="">
                 <label
                   htmlFor="categoryImage"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Product Image
                 </label>
@@ -57,7 +57,7 @@ export default function ProductDetails() {
               <div className="">
                 <label
                   htmlFor="categoryImage"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Back Image
                 </label>
@@ -76,7 +76,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Prodct Name
                 </label>
@@ -90,7 +90,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Select Category
                 </label>
@@ -111,7 +111,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Select Meterial
                 </label>
@@ -132,7 +132,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Select Prodcut Type
                 </label>
@@ -149,7 +149,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Is Top Rated
                 </label>
@@ -164,7 +164,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Actual Price
                 </label>
@@ -178,7 +178,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Total In Stocks
                 </label>
@@ -198,7 +198,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f] "
+                  className="block  text-md font-medium text-gray-900 text-[#76838f] "
                 >
                   Prodct Code
                 </label>
@@ -212,7 +212,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Select Sub Sub Category
                 </label>
@@ -231,7 +231,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Select Color
                 </label>
@@ -250,7 +250,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Is Best Selling
                 </label>
@@ -265,7 +265,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Is Upsell
                 </label>
@@ -280,7 +280,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Sale Price
                 </label>
@@ -295,7 +295,7 @@ export default function ProductDetails() {
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Order
                 </label>
@@ -313,14 +313,14 @@ export default function ProductDetails() {
           <div className='py-[40px]'>
             <label
               htmlFor="categoryImage"
-              className="block mb-2 text-md font-medium text-gray-900 text-[#76838f]"
+              className="block  text-md font-medium text-gray-900 text-[#76838f]"
             >
               Description
             </label>
             <ReactQuill theme="snow" value={value} onChange={setValue} className='h-[200px]' />
           </div>
 
-          <button class=" mt-5 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"> Create Product </button>
+          <button class=" mt-5 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "> Create Product </button>
 
         </form>
 

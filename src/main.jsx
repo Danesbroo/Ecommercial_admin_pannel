@@ -32,6 +32,13 @@ import ViewMeterials from "./Pages/Meterials/ViewMeterials.jsx";
 import Company_profile from "./Pages/Company-profile.jsx";
 import TestimonialAdd from "./Pages/Testimonial/TestimonialAdd.jsx";
 import TestimonialView from "./Pages/Testimonial/TestimonialView.jsx";
+import AddLocation from "./Pages/Location/AddLocation.jsx";
+import ViewLocation from "./Pages/Location/ViewLocation.jsx";
+import AddFaq from "./Pages/Faq/AddFaq.jsx";
+import ViewFaq from "./Pages/Faq/ViewFaq.jsx";
+import Users from "./Pages/Users.jsx";
+import Newsletters from "./Pages/NewsLetters.jsx";
+import Enquiry from "./Pages/Enquirys.jsx";
 
 
 
@@ -46,12 +53,14 @@ const route = createBrowserRouter(
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
         <Route path="company-profile" element={<Company_profile />} />
-        
+
         <Route path="color">
           <Route path="add" element={<AddColor />}></Route>
           <Route path="update/:id?" element={<AddColor />}></Route>
           <Route path="view" element={<ViewColor />}></Route>
         </Route>
+
+        
         <Route path="material">
           <Route path="add" element={<Meterials />}></Route>
           <Route path="update/:id?" element={<Meterials />}></Route>
@@ -64,8 +73,8 @@ const route = createBrowserRouter(
           <Route path="update/:id?" element={<AddCategory />}></Route>
           <Route path="view" element={<ViewCategory />}></Route>
         </Route>
-        
-        
+
+
         <Route path="category/sub-category">
           <Route path="add" element={<AddSubCategory />}></Route>
           <Route path="update/:id?" element={<AddSubCategory />}></Route>
@@ -77,26 +86,45 @@ const route = createBrowserRouter(
           <Route path="update/:id?" element={<AddSubSubCategory />}></Route>
           <Route path="view" element={<ViewSubSubCategory />}></Route>
         </Route>
-        
+
         <Route path="product">
           <Route path="product-details" element={<ProductDetails />}></Route>
           <Route path="product-items" element={<ProductItems />}></Route>
         </Route>
 
-        <Route path="story">
-          <Route path="story-details" element={<StoryDetails />}></Route>
-          <Route path="story-view" element={<StoryView />}></Route>
+        <Route path="why-choose-us">
+          <Route path="add" element={<StoryDetails />}></Route>
+          <Route path="update/:id?" element={<StoryDetails />}></Route>
+          <Route path="view" element={<StoryView />}></Route>
         </Route>
 
         <Route path="orders">
           <Route path="orders" element={<Orders />}></Route>
         </Route>
 
-        
+
         <Route path="slider">
           <Route path="add" element={<SliderDetails />}></Route>
           <Route path="update/:id?" element={<SliderDetails />}></Route>
           <Route path="view" element={<SliderView />}></Route>
+        </Route>
+
+        <Route path="location">
+          <Route path="add" element={<AddLocation />}></Route>
+          <Route path="update/:id?" element={<AddLocation />}></Route>
+          <Route path="view" element={<ViewLocation />}></Route>
+        </Route>
+
+
+        <Route path="/user" element={<Users />} />
+        <Route path="/enquiry" element={<Enquiry />} />
+        <Route path="/newsletter" element={<Newsletters />} />
+
+
+        <Route path="faq">
+          <Route path="add" element={<AddFaq />}></Route>
+          <Route path="update/:id?" element={<AddFaq />}></Route>
+          <Route path="view" element={<ViewFaq />}></Route>
         </Route>
 
 

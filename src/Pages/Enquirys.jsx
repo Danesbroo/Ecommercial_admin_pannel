@@ -1,18 +1,41 @@
 
+
 import React, { useState } from 'react'
-import Breadcrumb from '../../common/Breadcrumb'
+// import Breadcrumb from '../../common/Breadcrumb'
 import { Link } from 'react-router-dom';
 import { MdFilterAltOff, MdModeEdit, MdModeEditOutline } from 'react-icons/md';
 import { CiEdit } from 'react-icons/ci';
 import { FaFilter } from 'react-icons/fa';
+// import { MdModeEditOutline } from "react-icons/md";
 
-export default function StoryView() {
+export default function Enquiry() {
+    // let [orderModal, setOrderModal] = useState(false);
 
     let [activeFilter, setactiveFilter] = useState(true);
     return (
         <section className="w-full">
 
-            <Breadcrumb path={"Category"} link={'/category/view'} path2={"View"} slash={"/"} />
+            <nav className="flex border-b-2" aria-label="Breadcrumb">
+                <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                    <li className="inline-flex items-center ">
+                        <Link to={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <div className="flex items-center">
+                            /
+                            <Link to={""} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Enquiry</Link>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div className="flex items-center">
+                            /
+                            <span className="ms-1 text-md font-medium text-gray-500 md:ms-2">View</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
 
             <div className={` rounded-lg border border-gray-300 px-5 py-5 max-w-[1220px] mx-auto mt-10 ${activeFilter ? "hidden" : "block"}`}>
 
@@ -22,7 +45,7 @@ export default function StoryView() {
                             type="text"
                             id="simple-search"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search Name"
+                            placeholder="Search User"
                             required
                         />
                     </div>
@@ -55,7 +78,7 @@ export default function StoryView() {
                 <div className="max-w-[1220px] mx-auto py-5">
                     <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
                         <h3 className="text-[26px] font-semibold" >
-                            View Testimonial
+                        Contact Enquiry Management
                         </h3>
                         <div className='flex justify-between '>
                             <div onClick={() => setactiveFilter(!activeFilter)} className="cursor-pointer text-[white] mx-3 rounded-[50%] w-[40px] h-[40px]  mx-3 rounded-[50%] w-[40px] h-[40px] flex items-center justify-center  text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -84,17 +107,14 @@ export default function StoryView() {
                                                 </div>
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Title
+                                                User Info
                                             </th>
-                                            <th scope="col" class=" w-[10%] ">
-                                                Image
-                                            </th>
-                                            <th scope="col" class=" w-[20%] ">
-                                                Description
+                                            <th scope="col" class=" w-[12%] ">
+                                                Subject
                                             </th>
                                             
-                                            <th scope="col" class=" w-[8%] ">
-                                                Order
+                                            <th scope="col" class=" w-[15%] ">
+                                                Message
                                             </th>
                                             <th scope="col" class="w-[11%]">
                                                 Status
@@ -120,14 +140,10 @@ export default function StoryView() {
                                                 </div>
                                             </th>
                                             <td class=" py-4">
-                                                <img class="w-10 h-10 rounded-full" src="https://packshifts.in/images/iso.png" alt="Jese image" />
+                                                xyz@gmail.com
                                             </td>
                                             <td class=" py-4">
-                                                CEO Of SunPark
-                                            </td>
-                                            
-                                            <td class=" py-4">
-                                                1
+                                                9876543210
                                             </td>
                                             <td class=" py-4">
 
@@ -135,7 +151,7 @@ export default function StoryView() {
                                             </td>
                                             <td class=" py-4">
 
-                                                <Link to={`/testimonial/update/${123}`} >
+                                                <Link to={""} >
                                                     <div className="rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                         <MdModeEdit className='text-[18px]' />
                                                     </div>
@@ -158,14 +174,10 @@ export default function StoryView() {
                                                 </div>
                                             </th>
                                             <td class=" py-4">
-                                                <img class="w-10 h-10 rounded-full" src="https://packshifts.in/images/iso.png" alt="Jese image" />
+                                                xyz@gmail.com
                                             </td>
                                             <td class=" py-4">
-                                                CEO Of SunPark
-                                            </td>
-                                            
-                                            <td class=" py-4">
-                                                1
+                                                9876543210
                                             </td>
                                             <td class=" py-4">
 
@@ -175,7 +187,7 @@ export default function StoryView() {
                                             </td>
                                             <td class=" py-4">
 
-                                                <Link to={`/category/update/${123}`} >
+                                                <Link to={""} >
                                                     <div className="rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                         <MdModeEdit className='text-[18px]' />
                                                     </div>
@@ -204,3 +216,4 @@ export default function StoryView() {
         </section>
     )
 }
+

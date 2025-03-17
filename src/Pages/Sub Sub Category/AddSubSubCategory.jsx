@@ -52,12 +52,13 @@ export default function AddSubSubCategory() {
               <div className="w-1/3">
                 <label
                   htmlFor="categoryImage"
-                  className="block mb-2 text-md font-medium text-gray-900"
+                  className="block  text-md font-medium text-gray-900"
                 >
                   Category Image
                 </label>
                 <input
                   type="file"
+                  accept="image/*"
                   {...register("categoryImage", { required: "Category image is required" })}
                   id="categoryImage"
                   className="dropify"
@@ -102,7 +103,7 @@ export default function AddSubSubCategory() {
                 <div className="mb-5">
                   <label
                     htmlFor="categoryName"
-                    className="block mb-2 text-md font-medium text-gray-900"
+                    className="block  text-md font-medium text-gray-900"
                   >
                     Category Name
                   </label>
@@ -119,7 +120,7 @@ export default function AddSubSubCategory() {
                 <div className="mb-5">
                   <label
                     htmlFor="order"
-                    className="block mb-2 text-md font-medium text-gray-900"
+                    className="block  text-md font-medium text-gray-900"
                   >
                     Order
                   </label>

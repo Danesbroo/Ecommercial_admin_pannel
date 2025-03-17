@@ -86,11 +86,12 @@ export default function Profile() {
             <form onSubmit={handleSubmit(onSubmit)} className="p-3">
               <div className="flex gap-5">
                 <div className="w-1/3">
-                  <label className="block mb-2 text-md font-medium text-gray-900">
+                  <label className="block  text-md font-medium text-gray-900">
                     Choose Image
                   </label>
                   <input
                     type="file"
+                    accept="image/*"
                     {...register("image", { required: "Image is required" })}
                     className="dropify"
                     data-height="236"
@@ -99,7 +100,7 @@ export default function Profile() {
                 </div>
                 <div className="w-2/3">
                   <div className="mb-5">
-                    <label className="block mb-2 text-md font-medium text-gray-900">Name</label>
+                    <label className="block  text-md font-medium text-gray-900">Name</label>
                     <input
                       type="text"
                       {...register("name", { required: "Name is required" })}
@@ -110,7 +111,7 @@ export default function Profile() {
                   </div>
 
                   <div className="mb-5">
-                    <label className="block mb-2 text-md font-medium text-gray-900">Email</label>
+                    <label className="block  text-md font-medium text-gray-900">Email</label>
                     <input
                       type="email"
                       {...register("email", { required: "Email is required" })}
@@ -121,7 +122,7 @@ export default function Profile() {
                   </div>
 
                   <div className="mb-5">
-                    <label className="block mb-2 text-md font-medium text-gray-900">Mobile Number</label>
+                    <label className="block  text-md font-medium text-gray-900">Mobile Number</label>
                     <input
                       type="tel"
                       {...register("number", { required: "Mobile Number is required" })}
@@ -146,7 +147,7 @@ export default function Profile() {
           {activeTab === "changePassword" && (
             <form onSubmit={handleSubmit(onSubmit)} className="p-3">
               <div className="mb-5">
-                <label className="block mb-2 text-md font-medium text-gray-900">Current Password</label>
+                <label className="block  text-md font-medium text-gray-900">Current Password</label>
                 <input
                   type="password"
                   {...register("currentPassword", { required: "Current Password is required" })}
@@ -157,7 +158,7 @@ export default function Profile() {
               </div>
 
               <div className="mb-5">
-                <label className="block mb-2 text-md font-medium text-gray-900">New Password</label>
+                <label className="block  text-md font-medium text-gray-900">New Password</label>
                 <input
                   type="password"
                   {...register("newPassword", { required: "New Password is required" })}
@@ -168,7 +169,7 @@ export default function Profile() {
               </div>
 
               <div className="mb-5">
-                <label className="block mb-2 text-md font-medium text-gray-900">Confirm Password</label>
+                <label className="block  text-md font-medium text-gray-900">Confirm Password</label>
                 <input
                   type="password"
                   {...register("confirmPassword", { required: "Confirm Password is required" })}
