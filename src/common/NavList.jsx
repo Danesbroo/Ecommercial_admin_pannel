@@ -252,16 +252,16 @@ export let navList = [
   },
   {
     id: 19,
-    navName: "Locations",
+    navName: "Country",
     icon: <FaLocationArrow />,
     subMenu: [
       {
-        navName: "Add Location",
-        link: "/location/add",
+        navName: "Add Country",
+        link: "/country/add",
       },
       {
-        navName: "View Location ",
-        link: "/location/view",
+        navName: "View Country ",
+        link: "/country/view",
       },
     ],
   },

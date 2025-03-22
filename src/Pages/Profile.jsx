@@ -105,7 +105,7 @@ export default function Profile() {
                       type="text"
                       {...register("name", { required: "Name is required" })}
                       className="border-2 shadow-sm border-gray-300 text-gray-900 rounded-lg w-full py-2.5 px-3"
-                      placeholder="Admin Name"
+                      placeholder="Name"
                     />
                     {errors.name && <p className="text-red-500">{errors.name.message}</p>}
                   </div>
@@ -116,7 +116,7 @@ export default function Profile() {
                       type="email"
                       {...register("email", { required: "Email is required" })}
                       className="border-2 shadow-sm border-gray-300 text-gray-900 rounded-lg w-full py-2.5 px-3"
-                      placeholder="Admin Email"
+                      placeholder="Email"
                     />
                     {errors.email && <p className="text-red-500">{errors.email.message}</p>}
                   </div>
@@ -127,7 +127,7 @@ export default function Profile() {
                       type="tel"
                       {...register("number", { required: "Mobile Number is required" })}
                       className="border-2 shadow-sm border-gray-300 text-gray-900 rounded-lg w-full py-2.5 px-3"
-                      placeholder="Admin Number"
+                      placeholder="Number"
                     />
                     {errors.number && <p className="text-red-500">{errors.number.message}</p>}
                   </div>

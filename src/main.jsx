@@ -27,7 +27,7 @@ import SliderView from "./Pages/Slider/SliderView.jsx";
 import RootLayout from "./layout/RootLayout.jsx";
 import AddSubSubCategory from "./Pages/Sub Sub Category/AddSubSubCategory.jsx";
 import ViewSubSubCategory from "./Pages/Sub Sub Category/ViewSubSubCategory.jsx";
-import Meterials from "./Pages/Meterials/Meterials.jsx";
+import Addmeterials from "./Pages/Meterials/Addmeterials.jsx";
 import ViewMeterials from "./Pages/Meterials/ViewMeterials.jsx";
 import Company_profile from "./Pages/Company-profile.jsx";
 import TestimonialAdd from "./Pages/Testimonial/TestimonialAdd.jsx";
@@ -62,8 +62,8 @@ const route = createBrowserRouter(
 
         
         <Route path="material">
-          <Route path="add" element={<Meterials />}></Route>
-          <Route path="update/:id?" element={<Meterials />}></Route>
+          <Route path="add" element={<Addmeterials />}></Route>
+          <Route path="update/:id?" element={<Addmeterials />}></Route>
           <Route path="view" element={<ViewMeterials />}></Route>
         </Route>
 
@@ -109,7 +109,7 @@ const route = createBrowserRouter(
           <Route path="view" element={<SliderView />}></Route>
         </Route>
 
-        <Route path="location">
+        <Route path="country">
           <Route path="add" element={<AddLocation />}></Route>
           <Route path="update/:id?" element={<AddLocation />}></Route>
           <Route path="view" element={<ViewLocation />}></Route>

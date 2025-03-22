@@ -1,21 +1,36 @@
 import React, { useState } from 'react'
-import Breadcrumb from '../../common/Breadcrumb'
 import { Link } from 'react-router-dom';
-import { MdFilterAltOff, MdModeEdit, MdModeEditOutline } from 'react-icons/md';
-import { CiEdit } from 'react-icons/ci';
-import { FaFilter } from 'react-icons/fa';
-// import { MdModeEditOutline } from "react-icons/md";
+import {  MdModeEdit, MdModeEditOutline } from 'react-icons/md';
 
 export default function SliderView() {
-  // let [orderModal, setOrderModal] = useState(false);
 
-  let [activeFilter, setactiveFilter] = useState(true);
+  
   return (
     <section className="w-full">
 
-      <Breadcrumb path={"Category"} link={'/category/view'} path2={"View"} slash={"/"} />
+      <nav className="flex border-b-2" aria-label="Breadcrumb">
+        <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+          <li className="inline-flex items-center ">
+            <Link to={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
+              Home
+            </Link>
+          </li>
+          <li>
+            <div className="flex items-center">
+              /
+              <Link to={"/slider/view"} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Slider</Link>
+            </div>
+          </li>
+          <li aria-current="page">
+            <div className="flex items-center">
+              /
+              <span className="ms-1 text-md font-medium text-gray-500 md:ms-2">View</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
 
-      
+
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
           <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
@@ -23,7 +38,7 @@ export default function SliderView() {
               View Slider
             </h3>
             <div className='flex justify-between '>
-              
+
 
               <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Change Status</button>
               <button type="button" className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete </button>
@@ -126,7 +141,7 @@ export default function SliderView() {
                       </td>
                       <td class=" py-4">
 
-                      <Link to={`/slider/update/${123}`} >
+                        <Link to={`/slider/update/${123}`} >
                           <div className="rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <MdModeEdit className='text-[18px]' />
                           </div>

@@ -5,6 +5,7 @@ import "dropify/dist/css/dropify.min.css";
 import "dropify/dist/js/dropify.min.js";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useForm } from 'react-hook-form';
 
 export default function ProductDetails() {
 
@@ -21,7 +22,16 @@ export default function ProductDetails() {
 
   const [value, setValue] = useState('');
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
 
+  const onSubmit = (data) => {
+    console.log("Form Data:", data);
+    // alert("Product Created Successfully!");
+  };
   return (
     <section className="w-full">
 
@@ -34,48 +44,71 @@ export default function ProductDetails() {
 
       <div className='w-full px-6 py-6  '>
 
-        <form >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-3 gap-[10px] ">
+            {/* for left */}
             <div className="for-images ">
 
               <div className="">
                 <label
-                  htmlFor="categoryImage"
+                  htmlFor="ProductImage"
                   className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Product Image
                 </label>
                 <input
                   type="file"
-                  id="categoryImage"
+                  id="ProductImage"
                   className="dropify"
                   data-height="250"
+                  {...register("productImage", { required: "Product Image is required" })}
                 />
+                {errors.productImage && <p className="text-red-500 text-sm">{errors.productImage.message}</p>}
+
 
               </div>
 
               <div className="">
                 <label
-                  htmlFor="categoryImage"
+                  htmlFor="backImage"
                   className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Back Image
                 </label>
                 <input
                   type="file"
-                  id="categoryImage"
+                  id="backImage"
                   className="dropify"
                   data-height="250"
+                  {...register("backImage", { required: "Back Image is required" })}
                 />
+                 {errors.backImage && <p className="text-red-500 text-sm">{errors.backImage.message}</p>}
+              </div>
 
+              <div className="">
+                <label
+                  htmlFor="GalleryImage"
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
+                >
+                  Gallery Image
+                </label>
+                <input
+                  type="file"
+                  id="GalleryImage"
+                  className="dropify"
+                  data-height="250"
+                  {...register("GalleryImage", { required: "Gallery Image is required" })}
+                />
+                 {errors.GalleryImage && <p className="text-red-500 text-sm">{errors.GalleryImage.message}</p>}
               </div>
             </div>
 
+            {/* for midd */}
             <div className="middle">
 
               <div className="mb-5">
                 <label
-                  htmlFor="categoryName"
+                  htmlFor="Prodct_Name"
                   className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
                   Prodct Name
@@ -84,7 +117,9 @@ export default function ProductDetails() {
                   type="text"
                   className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                   placeholder='Prodct Name'
+                  {...register("Prodct_Name", { required: "Prodct Name is required" })}
                 />
+                {errors.Prodct_Name && <p className="text-red-500 text-sm">{errors.Prodct_Name.message}</p>}
               </div>
 
               <div className="mb-5">
@@ -92,18 +127,15 @@ export default function ProductDetails() {
                   htmlFor="categoryName"
                   className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
-                  Select Category
+                   Select Sub Category
                 </label>
-                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                <select  className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
                   <option value="">Select Category</option>
-                  <optgroup label="Electronics">
                     <option value="mobile">Mobile Phones</option>
                     <option value="laptop">Laptops</option>
-                  </optgroup>
-                  <optgroup label="Clothing">
                     <option value="men">Men's Wear</option>
                     <option value="women">Women's Wear</option>
-                  </optgroup>
+                  
                 </select>
 
               </div>
@@ -195,18 +227,23 @@ export default function ProductDetails() {
 
             {/* for right */}
             <div className="right-items">
-              <div className="mb-5">
+            <div className="mb-5">
                 <label
                   htmlFor="categoryName"
-                  className="block  text-md font-medium text-gray-900 text-[#76838f] "
+                  className="block  text-md font-medium text-gray-900 text-[#76838f]"
                 >
-                  Prodct Code
+                  Select Parent Category
                 </label>
-                <input
-                  type="text"
-                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
-                  placeholder='Prodct Code'
-                />
+                <select className="text-[19px] text-[#76838f] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg block w-full py-2.5 px-3">
+                  <option value="">Nothing Selected</option>
+
+                  <option value="mobile">Mobile Phones</option>
+                  <option value="laptop">Laptops</option>
+
+                  <option value="men">Men's Wear</option>
+                  <option value="women">Women's Wear</option>
+
+                </select>
               </div>
 
               <div className="mb-5">

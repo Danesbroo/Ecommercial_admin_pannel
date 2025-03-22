@@ -1,21 +1,37 @@
 
-
 import React, { useState } from 'react'
-import Breadcrumb from '../../common/Breadcrumb'
 import { Link } from 'react-router-dom';
 import { MdFilterAltOff, MdModeEdit, MdModeEditOutline } from 'react-icons/md';
-import { CiEdit } from 'react-icons/ci';
 import { FaFilter } from 'react-icons/fa';
-// import { MdModeEditOutline } from "react-icons/md";
+
 
 export default function ViewLocation() {
-  // let [orderModal, setOrderModal] = useState(false);
+  
 
   let [activeFilter, setactiveFilter] = useState(true);
   return (
     <section className="w-full">
-
-      <Breadcrumb path={"Country"} link={'/category/view'} path2={"View"} slash={"/"} />
+       <nav className="flex border-b-2" aria-label="Breadcrumb">
+                  <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                    <li className="inline-flex items-center ">
+                      <Link to={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
+                        Home
+                      </Link>
+                    </li>
+                    <li>
+                      <div className="flex items-center">
+                        /
+                        <Link to={"/country/view"} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Location</Link>
+                      </div>
+                    </li>
+                    <li aria-current="page">
+                      <div className="flex items-center">
+                        /
+                        <span className="ms-1 text-md font-medium text-gray-500 md:ms-2">View</span>
+                      </div>
+                    </li>
+                  </ol>
+                </nav>
 
       <div className={` rounded-lg border border-gray-300 px-5 py-5 max-w-[1220px] mx-auto mt-10 ${activeFilter ? "hidden" : "block"}`}>
 
@@ -126,7 +142,7 @@ export default function ViewLocation() {
                       </td>
                       <td class=" py-4">
 
-                        <Link to={`/location/update/${123}`} >
+                        <Link to={`/country/update/${123}`} >
                           <div className="rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <MdModeEdit className='text-[18px]' />
                           </div>
@@ -160,7 +176,7 @@ export default function ViewLocation() {
                       </td>
                       <td class=" py-4">
 
-                        <Link to={`/location/update/${123}`} >
+                        <Link to={`/country/update/${123}`} >
                           <div className="rounded-[50%] w-[40px] h-[40px] flex items-center justify-center text-white bg-blue-700  border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <MdModeEdit className='text-[18px]' />
                           </div>

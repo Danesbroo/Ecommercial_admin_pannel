@@ -3,22 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Breadcrumb from "../../common/Breadcrumb";
-import $ from "jquery";
-import "dropify/dist/css/dropify.min.css";
-import "dropify/dist/js/dropify.min.js";
+
 import { Link, useParams } from "react-router-dom";
 
 export default function AddFaq() {
-  useEffect(() => {
-    $(".dropify").dropify({
-      messages: {
-        default: "Drag and drop ",
-        replace: "Drag and drop ",
-        remove: "Remove",
-        error: "Oops, something went wrong"
-      }
-    });
-  }, []);
+ 
 
   const {
     register,
@@ -62,7 +51,7 @@ export default function AddFaq() {
           <li aria-current="page">
             <div className="flex items-center">
               /
-              <span className="ms-1 text-md font-medium text-gray-500 md:ms-2">Add</span>
+              <span className="ms-1 text-md font-medium text-gray-500 md:ms-2">{updateIdState ? "Update" : "Add"}</span>
             </div>
           </li>
         </ol>

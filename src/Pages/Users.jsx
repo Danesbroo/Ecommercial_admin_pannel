@@ -112,7 +112,7 @@ export default function Users() {
                                             <th scope="col" class=" w-[12%] ">
                                                 Email Id
                                             </th>
-                                            
+
                                             <th scope="col" class=" w-[15%] ">
                                                 Mobile Number
                                             </th>

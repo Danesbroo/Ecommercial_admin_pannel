@@ -4,7 +4,7 @@ import Breadcrumb from "../../common/Breadcrumb";
 import $ from "jquery";
 import "dropify/dist/css/dropify.min.css";
 import "dropify/dist/js/dropify.min.js";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function AddCategory() {
   useEffect(() => {
@@ -44,7 +44,29 @@ export default function AddCategory() {
 
   return (
     <section className="w-full">
-      <Breadcrumb path={"Category"} path2= {updateIdState ? "Update" : "Add"}  slash={"/"} />
+       <nav className="flex border-b-2" aria-label="Breadcrumb">
+            <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+              <li className="inline-flex items-center ">
+                <Link to={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <div className="flex items-center">
+                  /
+                  <Link to={"/category/view"} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Category</Link>
+                </div>
+              </li>
+              <li aria-current="page">
+                <div className="flex items-center">
+                  /
+                  <span className="ms-1 text-md font-medium text-gray-500 md:ms-2">{updateIdState ? "Update" : "Add"}</span>
+                </div>
+              </li>
+            </ol>
+          </nav>
+      
+      
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
@@ -102,6 +124,7 @@ export default function AddCategory() {
                   />
                   {errors.order && <p className="text-red-500">{errors.order.message}</p>}
                 </div>
+                
               </div>
             </div>
             <button

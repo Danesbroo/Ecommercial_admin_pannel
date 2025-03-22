@@ -12,8 +12,29 @@ export default function ViewCategory() {
   let [activeFilter, setactiveFilter] = useState(true);
   return (
     <section className="w-full">
+ <nav className="flex border-b-2" aria-label="Breadcrumb">
+      <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+        <li className="inline-flex items-center ">
+          <Link to={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
+            Home
+          </Link>
+        </li>
+        <li>
+          <div className="flex items-center">
+            /
+            <Link to={""} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Category</Link>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div className="flex items-center">
+            /
+            <span className="ms-1 text-md font-medium text-gray-500 md:ms-2">View</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
 
-      <Breadcrumb path={"Category"} link={'/category/view'} path2={"View"} slash={"/"} />
+      
 
       <div className={` rounded-lg border border-gray-300 px-5 py-5 max-w-[1220px] mx-auto mt-10 ${activeFilter ? "hidden" : "block"}`}>
 
