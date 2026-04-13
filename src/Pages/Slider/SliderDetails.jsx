@@ -4,33 +4,89 @@ import { useForm } from "react-hook-form";
 import $ from "jquery";
 import "dropify/dist/css/dropify.min.css";
 import "dropify/dist/js/dropify.min.js";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function SliderDetails() {
+  const [sliderDetails, setSliderDetails] = useState('');
+  const [updateIdState,setUpdateIdState]=useState(false);
+  const [imagePath, setImagePath] = useState('');
+  const params = useParams();
+  const updateId = params.id;
+  const navigate = useNavigate();
+
+
   useEffect(() => {
-    $(".dropify").dropify({
-      messages: {
-        default: "Drag and drop ",
-        replace: "Drag and drop ",
-        remove: "Remove",
-        error: "Oops, something went wrong"
-      }
-    });
-  }, []);
+    const dropifyElement = $("#image");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+    if(dropifyElement.data('dropify')) {
+      dropifyElement.data('dropify').destroy();
+      dropifyElement.removeData('dropify');
+    }
+    // update dropify
+    dropifyElement.replaceWith(
+      `<input type="file" name="image" id="image" className="dropify" data-height="250" data-default-file="${imagePath}" accept="image/*">`
+    );
+    $("#image").dropify()
+  },[imagePath]);
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  // Fetching the slider list
+    const formHandler = (event) => {
+      event.preventDefault();
+  
+      const formData = new FormData(event.target);
+  
+      if (updateId) {
+        axios.put(`${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_SLIDER_UPDATE}/${updateId}`, formData)
+          .then((success) => {
+            if (success.data._status == true) {
+              toast.success(success.data._message);
+              navigate('/slider/view');
+            } else {
+              toast.error(success.data._message);
+            }
+          })
+          .catch((error) => {
+            toast.error(error._message);
+          })
+      } else {
+        axios.post(`${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_SLIDER_CREATE}`, formData)
+          .then((success) => {
+            if (success.data._status === true) {
+              toast.success(success.data._message);
+              navigate('/slider/view'); // navigate to file into category page
+  
+            } else {
+              toast.error(success.data._message);
+            }
+          })
+          .catch((error) => {
+            toast.error(error.data._message);
+          });
+      };
+    }
+  useEffect(() => {
+    if (updateId) {
+      axios.post(import.meta.env.VITE_BASE_URL + import.meta.env.VITE_SLIDER_DETAILS,{
+        id: updateId
+      })
+        .then((response) => {
+          if (response.data._status == true) {
+            setSliderDetails(response.data._data)
+            setImagePath(response.data._image_path + response.data._data.image);
+          } else {
+            setSliderDetails('');
+          }
+        })
+        .catch(() => {
+          toast.error('Something went wrong !!');
+        })
+    }
+  }, [updateId]);
+
 
   // update work
-  const [updateIdState,setUpdateIdState]=useState(false)
-  let updateId=useParams().id
   useEffect(()=>{
     if(updateId==undefined){
       setUpdateIdState(false)
@@ -70,23 +126,22 @@ export default function SliderDetails() {
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
             {updateIdState ? "Update Silder" : "Add Slider"}  
           </h3>
-          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
+          <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
             <div className="flex gap-5">
               <div className="w-1/3">
                 <label
-                  
                   className="block mb-2 text-md font-medium text-gray-900"
                 >
                   Choose Image
                 </label>
                 <input
+                  name="image"
                   type="file"
-                  {...register("Image", { required: "Image is required" })}
-                  id="Image"
+                  id="image"
+                  data
                   className="dropify"
                   data-height="250"
                 />
-                {errors.Image && <p className="text-red-500">{errors.Image.message}</p>}
               </div>
               <div className="w-2/3">
                 <div className="mb-5">
@@ -97,13 +152,13 @@ export default function SliderDetails() {
                     Title
                   </label>
                   <input
+                    name="name"
+                    defaultValue={sliderDetails.name}
                     type="text"
-                    {...register("Title", { required: "Titleis required" })}
                     id="Title"
                     className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                     placeholder="Title"
                   />
-                  {errors.Title && <p className="text-red-500">{errors.Title.message}</p>}
                 </div>
                 <div className="mb-5">
                   <label
@@ -113,13 +168,13 @@ export default function SliderDetails() {
                     Order
                   </label>
                   <input
+                    name="order"
                     type="number"
-                    {...register("order", { required: "Order is required" })}
+                    defaultValue={sliderDetails.order}
                     id="order"
                     className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                     placeholder="Order"
                   />
-                  {errors.order && <p className="text-red-500">{errors.order.message}</p>}
                 </div>
               </div>
             </div>

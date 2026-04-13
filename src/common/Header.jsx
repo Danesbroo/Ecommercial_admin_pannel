@@ -1,8 +1,30 @@
-import React from 'react'
-import { RiProfileFill, RiProfileLine } from 'react-icons/ri'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { RiProfileFill } from 'react-icons/ri'
+import { Link, useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'; //  Cookie import
+import babuxora from '../../public/babuxora.jpeg' // logo import
+import { use } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function Header() {
+    const navigate = useNavigate(); // useNavigate for logout
+    const [companyId, setCompanyId] = useState('')
+    useEffect(() => {
+        axios.post('http://localhost:4000/api/admin/company/view')
+        .then((response) => {
+            setCompanyId(response.data._data[0]._id);
+        })
+        .catch((error) => {
+             toast.error("Error fetching company ID");     });
+    }, [])
+    //  Logout function
+    const Quit = () => {
+        Cookies.remove("token");    // remove token from cookies
+        navigate("/");              // redirect to login page
+    }
+    
+
     return (
         <header className='border-b-2'>
             <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
@@ -13,19 +35,11 @@ export default function Header() {
                     </div>
                     <div className="flex items-center lg:order-2">
                         <figure className='relative group w-12 h-12 cursor-pointer rounded-full'>
-                            <img className="w-12 h-12 rounded-full object-cover" src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Jese image" />
-
-                            <HeadDropDown />
+                            <img className="w-12 h-12 rounded-full object-cover" src={babuxora} alt='logo' />
+                                
+                            <HeadDropDown Quit={Quit} companyId={companyId} /> 
+                        
                         </figure>
-
-                        <button data-collapse-toggle="mobile-menu-2" type="button" className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="mobile-menu-2" aria-expanded="false">
-                            <span className="sr-only">Open main menu</span>
-                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
-                            <svg className="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                        </button>
-                    </div>
-                    <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
-
                     </div>
                 </div>
             </nav>
@@ -33,14 +47,10 @@ export default function Header() {
     )
 }
 
-
-function HeadDropDown() {
+function HeadDropDown({ Quit, companyId}) { // here is headDropdown is another function so quit should send through props
     return (
         <div className="absolute z-50 right-1 top-7 mt-2 hidden group-hover:block p-4">
-
-
             <div className="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg shadow-2xl ">
-
                 <Link to={"/profile"} >
                     <button type="button" className="relative inline-flex items-center w-full px-4 py-1.5 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
                         <svg className="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -49,19 +59,22 @@ function HeadDropDown() {
                         Profile
                     </button>
                 </Link>
-                <Link to={"/company-profile"}>
+
+                <Link to={`/company-profile/${companyId}`} >
                     <button type="button" className="relative inline-flex items-center w-full px-4 py-1.5 text-sm font-medium border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
                         <RiProfileFill className='mr-[10px] font-bold' />
                         Company Profile
                     </button>
                 </Link>
 
-                <button type="button" className="relative inline-flex items-center w-full px-4 py-3 text-sm font-medium border-t border-black rounded-b-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                <button 
+                    type="button" 
+                    onClick={Quit} 
+                    className="relative inline-flex items-center w-full px-4 py-3 text-sm font-medium border-t border-black rounded-b-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
                     <svg fill="currentColor" className="w-4 h-4 me-2.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M144 144l0 48 160 0 0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192l0-48C80 64.5 144.5 0 224 0s144 64.5 144 144l0 48 16 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 256c0-35.3 28.7-64 64-64l16 0z" /></svg>
                     Logout 
                 </button>
             </div>
-
         </div>
     )
 }

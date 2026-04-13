@@ -171,11 +171,11 @@ export let navList = [
     subMenu: [
       {
         navName: "Add Product",
-        link: "/product/product-details",
+        link: "/product/add",
       },
       {
         navName: "view Product",
-        link: "/product/product-items",
+        link: "/product/view",
       },
     ],
   },

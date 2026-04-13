@@ -2,37 +2,80 @@
 
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Breadcrumb from "../../common/Breadcrumb";
-import $ from "jquery";
-import "dropify/dist/css/dropify.min.css";
-import "dropify/dist/js/dropify.min.js";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function AddLocation() {
-  useEffect(() => {
-    $(".dropify").dropify({
-      messages: {
-        default: "Drag and drop ",
-        replace: "Drag and drop ",
-        remove: "Remove",
-        error: "Oops, something went wrong"
-      }
-    });
-  }, []);
+  const [country, setCountry] = useState([]);
+  const [countryDetails, setCountryDetails] = useState('');
+  const [updateIdState, setUpdateIdState] = useState(false)
+  const params = useParams();
+  const updateId = params.id;
+  const navigate = useNavigate();
+  
+  // Fetching the country list
+  const formHandler = (event) => {
+    event.preventDefault();
+    const data = {
+      name: event.target.name.value,
+      order: event.target.order.value,
+    }
+
+    if (updateId) {      
+      axios.put(`${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_COUNTRY_UPDATE}/${updateId}`, data)     
+      .then((success) => {
+        if (success.data._status == true) {
+          toast.success(success.data._message);
+          navigate('/country/view');
+        } else {
+          toast.error(success.data._message);
+        }
+      })
+      .catch((error) => {
+        toast.error(error.data._message);
+      })
+    } else {
+      axios.post(import.meta.env.VITE_BASE_URL + import.meta.env.VITE_COUNTRY_CREATE, data)
+        .then((success) => {
+          if (success.data._status === true) {
+            toast.success(success.data._message);
+            navigate('/country/view'); // navigate to file into country page
+
+          } else {
+            toast.error(success.data._Error_Message[0]);
+          }
+        })
+        .catch((error) => {
+          toast.error(error.data._message);
+        });
+    };
+  }
+  
+useEffect(() => {
+  if (updateId) {
+    axios.post(import.meta.env.VITE_BASE_URL + import.meta.env.VITE_COUNTRY_DETAILS,{
+      id: updateId
+    })
+      .then((response) => {
+        if (response.data._status == true) {
+          setCountryDetails(response.data._data)
+        } else {
+          setCountryDetails('');
+        }
+      })
+      .catch(() => {
+        toast.error('Something went wrong !!');
+      })
+  }
+}, [updateId]);
 
   const {
-    register,
-    handleSubmit,
+
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   // update work
-  const [updateIdState, setUpdateIdState] = useState(false)
-  let updateId = useParams().id
+  
   useEffect(() => {
     if (updateId == undefined) {
       setUpdateIdState(false)
@@ -41,8 +84,6 @@ export default function AddLocation() {
       setUpdateIdState(true)
     }
   }, [updateId])
-
-
 
   return (
     <section className="w-full">
@@ -71,50 +112,52 @@ export default function AddLocation() {
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
-            {updateIdState ? "Update Country" : "Add Country"}
+            {updateId ? "Update Country" : "Add Country"}
           </h3>
-          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
+          <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
 
-            <div className="">
-              <div className="mb-5">
-                <label
-                  htmlFor="Country"
-                  className="block mb-2 text-md font-medium text-gray-900"
-                >
-                  Category Name
-                </label>
-                <input
-                  type="text"
-                  {...register("Country", { required: "Country name is required" })}
-                  id="Country"
-                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
-                  placeholder="Country Name"
-                />
-                {errors.Country && <p className="text-red-500">{errors.Country.message}</p>}
+          <div className="">
+                <div className="mb-5">
+                  <label
+                    htmlFor="Name"
+                    className="block  text-md font-medium text-gray-900"
+                  >
+                    Category Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    defaultValue={countryDetails.name}
+                    required
+                    id="Name"
+                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                    placeholder="Material Name"
+                  />
+                </div>
+                <div className="mb-5">
+                  <label
+                    htmlFor="order"
+                    className="block  text-md font-medium text-gray-900"
+                  >
+                    Order
+                  </label>
+                  <input
+                    name="order"
+                    type="number"
+                    defaultValue={countryDetails.order}
+                    required
+                    id="order"
+                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                    placeholder="Order"
+                  />
+                </div>
               </div>
-              <div className="mb-5">
-                <label
-                  htmlFor="order"
-                  className="block mb-2 text-md font-medium text-gray-900"
-                >
-                  Order
-                </label>
-                <input
-                  type="number"
-                  {...register("order", { required: "Order is required" })}
-                  id="order"
-                  className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
-                  placeholder="Order"
-                />
-                {errors.order && <p className="text-red-500">{errors.order.message}</p>}
-              </div>
-            </div>
 
             <button
               type="submit"
               className="focus:outline-none my-5 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5"
             >
-              {updateIdState ? "Update Country" : "Add Country"}
+              {updateId ? "Update Country" : "Add Country"}
             </button>
           </form>
         </div>

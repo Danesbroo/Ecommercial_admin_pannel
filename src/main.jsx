@@ -17,8 +17,8 @@ import AddCategory from "./Pages/Parent_Category/AddCategory.jsx";
 import ViewCategory from "./Pages/Parent_Category/ViewCategory.jsx";
 import AddSubCategory from "./Pages/Sub Category/AddSubCategory.jsx";
 import ViewSubCategory from "./Pages/Sub Category/ViewSubCategory.jsx";
-import ProductDetails from "./Pages/Product/ProductDetails.jsx";
-import ProductItems from "./Pages/Product/ProductItems.jsx";
+import AddProduct from "./Pages/Product/AddProduct.jsx";
+import ViewProducts from "./Pages/Product/ViewProducts.jsx";
 import StoryDetails from "./Pages/Story/StoryDetails.jsx";
 import StoryView from "./Pages/Story/StoryView.jsx";
 import Orders from "./Pages/Orders/Orders.jsx";
@@ -39,20 +39,19 @@ import ViewFaq from "./Pages/Faq/ViewFaq.jsx";
 import Users from "./Pages/Users.jsx";
 import Newsletters from "./Pages/NewsLetters.jsx";
 import Enquiry from "./Pages/Enquirys.jsx";
-
-
+import ProtectedRoute from "./layout/ ProtectedRoute.jsx";
 
 const route = createBrowserRouter(
   createRoutesFromElements(
     <>
+      {/* Login page: open */}
       <Route path="/" element={<Login />} />
-      <Route path="/" element={<RootLayout />}>
-        <Route path="home" element={<Home />} />
-      </Route>
-      <Route element={<RootLayout />}>
+
+      {/* Protected pages: wrap with ProtectedRoute */}
+      <Route element={<ProtectedRoute><RootLayout /></ProtectedRoute>}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="company-profile" element={<Company_profile />} />
+        <Route path="company-profile/:id" element={<Company_profile />} />
 
         <Route path="color">
           <Route path="add" element={<AddColor />}></Route>
@@ -60,20 +59,17 @@ const route = createBrowserRouter(
           <Route path="view" element={<ViewColor />}></Route>
         </Route>
 
-        
         <Route path="material">
           <Route path="add" element={<Addmeterials />}></Route>
           <Route path="update/:id?" element={<Addmeterials />}></Route>
           <Route path="view" element={<ViewMeterials />}></Route>
         </Route>
 
-
         <Route path="category">
           <Route path="add" element={<AddCategory />}></Route>
           <Route path="update/:id?" element={<AddCategory />}></Route>
           <Route path="view" element={<ViewCategory />}></Route>
         </Route>
-
 
         <Route path="category/sub-category">
           <Route path="add" element={<AddSubCategory />}></Route>
@@ -88,8 +84,9 @@ const route = createBrowserRouter(
         </Route>
 
         <Route path="product">
-          <Route path="product-details" element={<ProductDetails />}></Route>
-          <Route path="product-items" element={<ProductItems />}></Route>
+          <Route path="add" element={<AddProduct />}></Route>
+          <Route path="update/:id?" element={<AddProduct/>}></Route>
+          <Route path="view" element={<ViewProducts />}></Route>
         </Route>
 
         <Route path="why-choose-us">
@@ -101,7 +98,6 @@ const route = createBrowserRouter(
         <Route path="orders">
           <Route path="orders" element={<Orders />}></Route>
         </Route>
-
 
         <Route path="slider">
           <Route path="add" element={<SliderDetails />}></Route>
@@ -115,18 +111,15 @@ const route = createBrowserRouter(
           <Route path="view" element={<ViewLocation />}></Route>
         </Route>
 
-
         <Route path="/user" element={<Users />} />
         <Route path="/enquiry" element={<Enquiry />} />
         <Route path="/newsletter" element={<Newsletters />} />
-
 
         <Route path="faq">
           <Route path="add" element={<AddFaq />}></Route>
           <Route path="update/:id?" element={<AddFaq />}></Route>
           <Route path="view" element={<ViewFaq />}></Route>
         </Route>
-
 
         <Route path="testimonial">
           <Route path="add" element={<TestimonialAdd />}></Route>
@@ -137,8 +130,10 @@ const route = createBrowserRouter(
     </>
   )
 );
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={route}></RouterProvider>
+    <RouterProvider router={route} />
   </StrictMode>
 );
+

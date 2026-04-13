@@ -5,33 +5,93 @@ import Breadcrumb from "../../common/Breadcrumb";
 import $ from "jquery";
 import "dropify/dist/css/dropify.min.css";
 import "dropify/dist/js/dropify.min.js";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function StoryDetails() {
+
+  let [whyChooseDetails, setWhyChooseDetails] = useState('');
+  const [updateIdState, setUpdateIdState] = useState(false);
+  const [nameFilter, setNameFilter] = useState('')
+  const [imagePath, setImagePath] = useState('');
+  const params = useParams();
+  const updateId = params.id;
+  const navigate = useNavigate();
+
+
+  const formHandler = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    if (updateId) {
+      axios.put(`${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_WHY_CHOOSE_UPDATE}/${updateId}`, formData)
+        .then((success) => {
+          if (success.data._status == true) {
+            toast.success(success.data._message);
+            navigate('/why-choose-us/view');
+          } else {
+            toast.error(success.data._message);
+          }
+        })
+        .catch((error) => {
+          toast.error(error._message);
+        })
+    } else {
+      axios.post(`${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_WHY_CHOOSE_CREATE}`, formData)
+        .then((success) => {
+          if (success.data._status === true) {
+            toast.success(success.data._message);
+            navigate('/why-choose-us/view'); // navigate to file into category page
+
+          } else {
+            toast.error(error.response?.data?._message || "Something went wrong!");
+
+          }
+        })
+        .catch((error) => {
+          toast.error(error.response?.data?._message || "Something went wrong!");
+
+        });
+    };
+  }
   useEffect(() => {
-    $(".dropify").dropify({
-      messages: {
-        default: "Drag and drop ",
-        replace: "Drag and drop ",
-        remove: "Remove",
-        error: "Oops, something went wrong"
-      }
-    });
-  }, []);
+    const dropifyElement = $("#image");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+    if (dropifyElement.data('dropify')) {
+      dropifyElement.data('dropify').destroy();
+      dropifyElement.removeData('dropify');
+    }
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+    // update dropify
+    dropifyElement.replaceWith(
+      `<input type="file" name="image" id="image" class="dropify" data-height="250" data-default-file="${imagePath}" accept="image/*">`
+    );
+    $("#image").dropify()
+  }, [imagePath]);
+
+  useEffect(() => {
+    if (updateId) {
+      axios.post(import.meta.env.VITE_BASE_URL + import.meta.env.VITE_WHY_CHOOSE_DETAILS, {
+        id: updateId
+      })
+        .then((response) => {
+          if (response.data._status == true) {
+            setWhyChooseDetails(response.data._data)
+            setImagePath(response.data._image_path + response.data._data.image);
+          } else {
+            setWhyChooseDetails('');
+          }
+        })
+        .catch(() => {
+          toast.error('Something went wrong !!');
+        })
+    }
+  }, [updateId]);
 
   // update work
-  const [updateIdState, setUpdateIdState] = useState(false)
-  let updateId = useParams().id
+
   useEffect(() => {
     if (updateId == undefined) {
       setUpdateIdState(false)
@@ -46,25 +106,25 @@ export default function StoryDetails() {
   return (
     <section className="w-full">
       <nav className="flex border-b-2" aria-label="Breadcrumb">
-            <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-              <li className="inline-flex items-center ">
-                <Link href={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <div className="flex items-center">
-                  /
-                  <Link to={"/why-choose-us/view"} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Why Choose Us</Link>
-                </div>
-              </li>
-              <li aria-current="page">
-                <div className="flex items-center">
-                 / {updateIdState ? "Update" : "Add"}
-                </div>
-              </li>
-            </ol>
-          </nav>
+        <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+          <li className="inline-flex items-center ">
+            <Link href={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
+              Home
+            </Link>
+          </li>
+          <li>
+            <div className="flex items-center">
+              /
+              <Link to={"/why-choose-us/view"} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Why Choose Us</Link>
+            </div>
+          </li>
+          <li aria-current="page">
+            <div className="flex items-center">
+              / {updateIdState ? "Update" : "Add"}
+            </div>
+          </li>
+        </ol>
+      </nav>
       {/* <Breadcrumb path={"Why Choose Us"} path2={updateIdState ? "Update" : "Add"} link={"/why-choose-us/view"} slash={"/"} /> */}
 
       <div className="w-full min-h-[610px]">
@@ -72,7 +132,7 @@ export default function StoryDetails() {
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
             {updateIdState ? "Update Why Choose Us" : "Add Why Choose Us"}
           </h3>
-          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
+          <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
             <div className="flex gap-5">
               <div className="w-1/3">
                 <label
@@ -83,12 +143,10 @@ export default function StoryDetails() {
                 </label>
                 <input
                   type="file"
-                  {...register("Image", { required: "image is required" })}
-                  id="Image"
+                  id="image"
                   className="dropify"
                   data-height="250"
                 />
-                {errors.Image && <p className="text-red-500">{errors.Image.message}</p>}
               </div>
               <div className="w-2/3">
                 <div className="mb-5">
@@ -99,13 +157,13 @@ export default function StoryDetails() {
                     Title
                   </label>
                   <input
+                    name="title"
                     type="text"
-                    {...register("Title", { required: "Title is required" })}
+                    defaultValue={whyChooseDetails.title}
                     id="Title"
                     className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                     placeholder="Title"
                   />
-                  {errors.Title && <p className="text-red-500">{errors.Title.message}</p>}
                 </div>
                 <div className="mb-5">
                   <label
@@ -116,15 +174,17 @@ export default function StoryDetails() {
                   </label>
                   <input
                     type="number"
-                    {...register("order", { required: "Order is required" })}
                     id="order"
-                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
+                    name="order"
+                    min="0"
+                    max="500"
+                    defaultValue={whyChooseDetails?.order ?? ""}
+                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg 
+             focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                     placeholder="Order"
                   />
-                  {errors.order && <p className="text-red-500">{errors.order.message}</p>}
+
                 </div>
-
-
                 <div className="mb-5">
                   <label
                     htmlFor="Description"
@@ -133,12 +193,12 @@ export default function StoryDetails() {
                     Description
                   </label>
                   <textarea
-                    {...register("Description", { required: "Description is required" })}
+                    name="discription"
+                    defaultValue={whyChooseDetails.discription}
                     id="Description"
                     className="text-[19px] resize-none h-[100px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                     placeholder="Description"
                   > </textarea>
-                  {errors.Description && <p className="text-red-500">{errors.Description.message}</p>}
                 </div>
               </div>
             </div>

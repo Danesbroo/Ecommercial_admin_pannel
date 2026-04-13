@@ -4,19 +4,86 @@ import Breadcrumb from "../../common/Breadcrumb";
 import $ from "jquery";
 import "dropify/dist/css/dropify.min.css";
 import "dropify/dist/js/dropify.min.js";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function TestimonialAdd() {
-    useEffect(() => {
-        $(".dropify").dropify({
-            messages: {
-                default: "Drag and drop ",
-                replace: "Drag and drop ",
-                remove: "Remove",
-                error: "Oops, something went wrong"
+  const [testimonialDetails, setTestimonialDetails] = useState('');
+  const [updateIdState,setUpdateIdState]=useState(false);
+  const [imagePath, setImagePath] = useState('');
+  const params = useParams();
+  const updateId = params.id;
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    const dropifyElement = $("#image");
+
+    if(dropifyElement.data('dropify')) {
+      dropifyElement.data('dropify').destroy();
+      dropifyElement.removeData('dropify');
+    }
+    // update dropify
+    dropifyElement.replaceWith(
+      `<input type="file" name="image" id="image" class="dropify" data-height="250" data-default-file="${imagePath}" accept="image/*">`
+    );
+    $("#image").dropify()
+  },[imagePath]);
+
+  // Fetching the category list
+    const formHandler = (event) => {
+      event.preventDefault();
+  
+      const formData = new FormData(event.target);
+  
+      if (updateId) {
+        axios.put(`${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_TESTIMONIAL_UPDATE}/${updateId}`, formData)
+          .then((success) => {
+            if (success.data._status == true) {
+              toast.success(success.data._message);
+              navigate('/testimonial/view');
+            } else {
+              toast.error(success.data._message);
             }
-        });
-    }, []);
+          })
+          .catch((error) => {
+            toast.error(error._message);
+          })
+      } else {
+        axios.post(`${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_TESTIMONIAL_CREATE}`, formData)
+          .then((success) => {
+            if (success.data._status === true) {
+              toast.success(success.data._message);
+              navigate('/testimonial/view'); // navigate to file into category page
+  
+            } else {
+              toast.error(success.data._message);
+            }
+          })
+          .catch((error) => {
+            toast.error(error.data._message);
+          });
+      };
+    }
+  useEffect(() => {
+    if (updateId) {
+      axios.post(import.meta.env.VITE_BASE_URL + import.meta.env.VITE_TESTIMONIAL_DETAILS,{
+        id: updateId
+      })
+        .then((response) => {
+          if (response.data._status == true) {
+            setTestimonialDetails(response.data._data)
+            setImagePath(response.data._image_path + response.data._data.image);
+          } else {
+            setCategoryDetails('');
+          }
+        })
+        .catch(() => {
+          toast.error('Something went wrong !!');
+        })
+    }
+  }, [updateId]);
 
     const {
         register,
@@ -29,8 +96,6 @@ export default function TestimonialAdd() {
     };
 
     // update work
-    const [updateIdState, setUpdateIdState] = useState(false)
-    let updateId = useParams().id
     useEffect(() => {
         if (updateId == undefined) {
             setUpdateIdState(false)
@@ -41,13 +106,13 @@ export default function TestimonialAdd() {
     }, [updateId])
     return (
         <section className="w-full">
-            <Breadcrumb path={"Category"} path2={updateIdState ? "Update" : "Add"} slash={"/"} />
+            <Breadcrumb path={"testimonial"} path2={updateIdState ? "Update" : "Add"} slash={"/"} />
             <div className="w-full min-h-[610px]">
                 <div className="max-w-[1220px] mx-auto py-5">
                     <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
-                        {updateIdState ? "Update Silder" : "Add Slider"}
+                        {updateIdState ? "Update Testimonial" : "Add Testimonial"}
                     </h3>
-                    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
+                    <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
                         <div className="flex gap-5">
                             <div className="w-1/3">
                                 <label
@@ -57,13 +122,12 @@ export default function TestimonialAdd() {
                                     Choose Image
                                 </label>
                                 <input
+                                    name="image"
                                     type="file"
-                                    {...register("Image", { required: "Image is required" })}
-                                    id="Image"
+                                    id="image"
                                     className="dropify"
                                     data-height="250"
                                 />
-                                {errors.Image && <p className="text-red-500">{errors.Image.message}</p>}
                             </div>
                             <div className="w-2/3">
                                 <div className="mb-5">
@@ -74,13 +138,13 @@ export default function TestimonialAdd() {
                                         Name
                                     </label>
                                     <input
+                                        name="name"
                                         type="text"
-                                        {...register("Name", { required: "Nameis required" })}
+                                        defaultValue={testimonialDetails.name}
                                         id="Name"
                                         className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                                         placeholder="Name"
                                     />
-                                    {errors.Name && <p className="text-red-500">{errors.Name.message}</p>}
                                 </div>
                                 <div className="mb-5">
                                     <label
@@ -90,15 +154,14 @@ export default function TestimonialAdd() {
                                         Designation
                                     </label>
                                     <input
-                                        type="number"
-                                        {...register("Designation", { required: "Designation is required" })}
+                                        name="designation"
+                                        defaultValue={testimonialDetails.designation}
+                                        type="text"
                                         id="Designation"
                                         className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                                         placeholder="Designation"
                                     />
-                                    {errors.Designation && <p className="text-red-500">{errors.Designation.message}</p>}
                                 </div>
-
                                 <div className="mb-5">
                                     <label
                                         htmlFor="Rating"
@@ -107,15 +170,14 @@ export default function TestimonialAdd() {
                                         Rating
                                     </label>
                                     <input
+                                        name="rating"
+                                        defaultValue={testimonialDetails.rating}
                                         type="number"
-                                        {...register("Rating", { required: "Rating is required" })}
                                         id="Rating"
                                         className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                                         placeholder="Rating"
                                     />
-                                    {errors.Rating && <p className="text-red-500">{errors.Rating.message}</p>}
                                 </div>
-
                                 <div className="mb-5">
                                     <label
                                         htmlFor="Order"
@@ -124,15 +186,14 @@ export default function TestimonialAdd() {
                                         Order
                                     </label>
                                     <input
+                                        name="order"
+                                        defaultValue={testimonialDetails.order}
                                         type="number"
-                                        {...register("Order", { required: "Order is required" })}
                                         id="Order"
                                         className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                                         placeholder="Order"
                                     />
-                                    {errors.Order && <p className="text-red-500">{errors.Order.message}</p>}
                                 </div>
-
                                 <div className="mb-5">
                                     <label
                                         htmlFor="Message"
@@ -141,12 +202,12 @@ export default function TestimonialAdd() {
                                         Message
                                     </label>
                                     <textarea
-                                        {...register("Message", { required: "Message is required" })}
+                                        name="message"
+                                        defaultValue={testimonialDetails.message}
                                         id="Message"
                                         className="text-[19px] resize-none h-[100px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                                         placeholder="Message"
                                     > </textarea>
-                                    {errors.Message && <p className="text-red-500">{errors.Message.message}</p>}
                                 </div>
                             </div>
                         </div>

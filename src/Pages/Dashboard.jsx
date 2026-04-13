@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../common/Sidebar";
 import Header from "../common/Header";
 import Breadcrumb from "../common/Breadcrumb";
 import Footer from "../common/Footer";
+import axios from "axios";
 
 export default function Dashboard() {
+
+  const [totalAmount, setTotalAmount] = useState("")
+  const [totalNumber, setTotalNumber] = useState("")
+  const [user, setUser] = useState('')
+  const [product, setProduct] = useState('')
+  useEffect(() => {
+    axios.get("http://localhost:4000/api/admin/dashboard")
+      .then((response) => {
+        setTotalAmount(response.data.totalAmount[0].totalAmount);
+        setTotalNumber(response.data._total_records);
+      })
+      .catch((err) => {
+        console.log(err);       
+  }) 
+}, [])
+
+useEffect(() => {
+  axios.get("http://localhost:4000/api/admin/usernumber")
+    .then((response) => {
+      setUser(response.data._total_records)
+    })
+    .catch((err) => {
+      console.log(err);       
+}) 
+}, [])
+useEffect(() => {
+  axios.get("http://localhost:4000/api/admin/productcount")
+    .then((response) => {
+      setProduct(response.data._total_records)
+    })
+    .catch((err) => {
+      console.log(err);       
+}) 
+}, [])
+
   return (
     <>
     <Breadcrumb path={"Dashboard"}/>
@@ -12,27 +48,27 @@ export default function Dashboard() {
             <div className="max-w-[1220px] mx-auto py-5">
               <div className="grid grid-cols-3 gap-5">
                 <DashboardItems
-                  h3={"26K"}
-                  span={"(-12.4% ↓)"}
+                  h3={user}
+                  span={""}
                   text={"Users"}
                   bg={"#5956D3"}
                 />
                 <DashboardItems
-                  h3={"$6,200"}
-                  span={"(40.9% ↑)"}
+                  h3={product}
+                  span={''}
                   text={"Product"}
                   bg={"#2998FE"}
                 />
                 <DashboardItems
-                  h3={"2.49%"}
-                  span={"(84.7% ↑)"}
-                  text={"Category"}
+                  h3={totalAmount}
+                  span={""}
+                  text={"Total Sales"}
                   bg={"#FCB01E"}
                 />
                 <DashboardItems
-                  h3={"44K"}
-                  span={"(-23.6% ↓"}
-                  text={"Orders"}
+                  h3={totalNumber}
+                  span={''}
+                  text={"Total Orders"}
                   bg={"#E95353"}
                 />
               </div>

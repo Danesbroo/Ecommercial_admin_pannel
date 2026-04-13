@@ -4,24 +4,76 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Breadcrumb from "../../common/Breadcrumb";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function AddFaq() {
- 
+  const [faqDetails, setFaqDetails] = useState({});
+  const [updateIdState,setUpdateIdState]=useState(false)
+  const params = useParams();
+  const updateId = params.id;
+  const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // Fetch faq details if updating
+  useEffect(() => {
+    if (updateId) {
+      axios.post(import.meta.env.VITE_BASE_URL + import.meta.env.VITE_FAQ_DETAILS,{
+        id: updateId
+      })
+        .then((response) => {
+          if (response.data._status == true) {
+            setFaqDetails(response.data._data)
+          } else {
+            setFaqDetails('');
+          }
+        })
+        .catch(() => {
+          toast.error('Something went wrong !!');
+        })
+    }
+  }, [updateId]);
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  // Handle form submit
+  const formHandler = (event) => {
+    event.preventDefault();
 
-  // update work
-  const [updateIdState, setUpdateIdState] = useState(false)
-  let updateId = useParams().id
+    const data = {
+      question: event.target.question.value,
+      answer: event.target.answer.value,
+      order: event.target.order.value,
+    }
+
+    if (updateId) {
+      axios.put(`${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_FAQ_UPDATE}/${updateId}`, data)
+        .then((success) => {
+          if (success.data._status == true) {
+            toast.success(success.data._message);
+            navigate('/faq/view');
+          } else {
+            toast.error(success.data._message);
+          }
+        })
+        .catch((error) => {
+          toast.error(error.data._message);
+        })
+    } else {
+      axios.post(import.meta.env.VITE_BASE_URL + import.meta.env.VITE_FAQ_CREATE, data)
+        .then((success) => {
+          if (success.data._status === true) {
+            toast.success(success.data._message);
+            navigate('/faq/view'); // navigate to file into material page
+
+          } else {
+            toast.error(success.data._Error_Message[0]);
+          }
+        })
+        .catch((error) => {
+          toast.error(error.data._Error_Message[0]);
+        });
+    };
+  }
+
   useEffect(() => {
     if (updateId == undefined) {
       setUpdateIdState(false)
@@ -62,7 +114,7 @@ export default function AddFaq() {
           <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
             {updateIdState ? "Update Faq" : "Add Faq"}
           </h3>
-          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
+          <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
 
             <div className="">
               <div className="mb-5">
@@ -73,15 +125,14 @@ export default function AddFaq() {
                   Question
                 </label>
                 <input
+                  name="question"
+                  defaultValue={faqDetails.question}
                   type="text"
-                  {...register("Question", { required: "Question is required" })}
                   id="Question"
                   className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                   placeholder="Question"
                 />
-                {errors.Question && <p className="text-red-500">{errors.Question.message}</p>}
               </div>
-
               <div className="mb-5">
                 <label
                   htmlFor="Answer"
@@ -90,15 +141,13 @@ export default function AddFaq() {
                   Answer
                 </label>
                 <textarea
-
-                  {...register("Answer", { required: "Answer is required" })}
+                  name="answer"
+                  defaultValue={faqDetails.answer}
                   id="Answer"
                   className="text-[19px] h-[150px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                   placeholder="Answer"
                 ></textarea>
-                {errors.Answer && <p className="text-red-500">{errors.Answer.message}</p>}
               </div>
-
               <div className="mb-5">
                 <label
                   htmlFor="order"
@@ -107,13 +156,13 @@ export default function AddFaq() {
                   Order
                 </label>
                 <input
+                  name="order"
+                  defaultValue={faqDetails.order}
                   type="number"
-                  {...register("order", { required: "Order is required" })}
                   id="order"
                   className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                   placeholder="Order"
                 />
-                {errors.order && <p className="text-red-500">{errors.order.message}</p>}
               </div>
             </div>
 

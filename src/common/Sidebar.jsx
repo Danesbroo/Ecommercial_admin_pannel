@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { navList } from "./NavList";
+import img from "../../src/assets/logo.png";
 
 export default function Sidebar() {
   let [sidebar, setSidebar] = useState(null);
@@ -16,14 +17,14 @@ export default function Sidebar() {
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 scrollbar-hide">
-          <Link to={"/home"}>
-            <div className="flex items-center ps-2.5 mb-5 border-b border-slate-400 pb-7">
+          <Link to={"/dashboard"}>
+            <div className="flex items-center ps-2.5 mb-2 border-b border-slate-400 pb-2">
               <img
-                src="https://www.wscubetech.com/images/wscube-tech-logo-2.svg"
-                className="img-fluid"
-                alt="Flowbite Logo"
+                src={img}
+                className="w-72 h-36 object-contain"
+                alt="Logo"
               />
-             
+              {/* https://www.wscubetech.com/images/wscube-tech-logo-2.svg */}
             </div>
           </Link>
           <ul className="space-y-2 font-medium">
@@ -46,7 +47,7 @@ export default function Sidebar() {
                 </div>
               </li>
             </Link>
-           
+
             {/* ! MY LI Drop Down We have To make it like accordian START */}
 
             {navList.map((items, index) => {

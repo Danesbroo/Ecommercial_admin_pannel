@@ -6,7 +6,7 @@ export default function Breadcrumb({ path, path2, slash, link }) {
     <nav className="flex border-b-2" aria-label="Breadcrumb">
       <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li className="inline-flex items-center ">
-          <Link to={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
+          <Link to={"/dashboard"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
             Home
           </Link>
         </li>
