@@ -233,7 +233,7 @@ export default function CompanyProfile() {
           // build FULL image URL
           if (res.data._data?.image) {
             setImageUrl(
-              `http://localhost:4000/uploads/company/${res.data._data.image}`
+              `https://finalproject-api-5.onrender.com/uploads/company/${res.data._data.image}`
             );
           }
         } else {

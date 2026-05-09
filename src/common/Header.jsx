@@ -11,7 +11,7 @@ export default function Header() {
     const navigate = useNavigate(); // useNavigate for logout
     const [companyId, setCompanyId] = useState('')
     useEffect(() => {
-        axios.post('http://localhost:4000/api/admin/company/view')
+        axios.post(`${import.meta.env.VITE_BASE_URL}company/view`)
         .then((response) => {
             setCompanyId(response.data._data[0]._id);
         })

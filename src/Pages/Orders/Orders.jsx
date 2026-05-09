@@ -15,7 +15,7 @@ export default function Orders() {
   const totalamount = selectedOrder?.productInfo.reduce((acc, product) => acc + product.price * product.quantity, 0);
 
   useEffect(() => {
-    axios.post("http://localhost:4000/api/admin/order/view")
+    axios.post(`${import.meta.env.VITE_BASE_URL}order/view`)
       .then((res) => {
         setOrders(res.data._data)
         setImagePath(res.data._image_path);
@@ -44,7 +44,7 @@ const deleteFile = () => {
 
   if (checkedValue.length > 0) {
       if (confirm('Are you Sure you Want to delete !!')) {
-          axios.put("http://localhost:4000/api/admin/order/decompose", { _id: checkedValue })
+          axios.put(`${import.meta.env.VITE_BASE_URL}order/decompose", { _id: checkedValue }`)
               .then((response) => {
                   if (response.data._status == true) {
                       toast.success(response.data._message);

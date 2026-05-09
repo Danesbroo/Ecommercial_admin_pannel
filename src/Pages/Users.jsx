@@ -19,7 +19,7 @@ export default function Users() {
     const [totalPages, setTotalPages] = useState()
 
     useEffect(()=>{
-        axios.post("http://localhost:4000/api/admin/webuser/view", { fname: value, lname: value, page: currentPage})
+        axios.post(`${import.meta.env.VITE_BASE_URL}webuser/view`, { fname: value, lname: value, page: currentPage})
         .then((response)=>{
             if(response.data._status === true){
                 setUsers(response.data._data)
@@ -71,7 +71,7 @@ export default function Users() {
 
         if (checkedValue.length > 0) {
             axios.put(
-            "http://localhost:4000/api/admin/webuser/change-status",
+            `${import.meta.env.VITE_BASE_URL}webuser/change-status`,
                 { id: checkedValue }
             )
                 .then((response) => {
@@ -94,7 +94,7 @@ export default function Users() {
 
         if (checkedValue.length > 0) {
             if (confirm('Are you Sure you Want to delete !!')) {
-                axios.put("http://localhost:4000/api/admin/webuser/delete", { id: checkedValue })
+                axios.put(`${import.meta.env.VITE_BASE_URL}webuser/delete`, { id: checkedValue })
                     .then((response) => {
                         if (response.data._status == true) {
                             toast.success(response.data._message);

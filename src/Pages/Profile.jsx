@@ -113,41 +113,6 @@ export default function Profile() {
     });
   }, [activeTab]);
 
-  // update profile section
-  // const updateProfile = (event) => {
-  //   event.preventDefault();
-  //   const data = event.target;
-
-  //   const finalUpdate = {
-  //     name: data.name.value,
-  //     email: data.email.value,
-  //     mobile_number: data.mobile_number.value,
-  //     address: data.address.value,
-  //     image: data.image.files[0],
-  //   };
-
-  //   const token = Cookies.get("token"); // add token
-
-  //   axios.post(
-  //     `${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_ADMIN_UPDATE_PROFILE}`,
-  //     finalUpdate,
-  //     { headers: { Authorization: `Bearer ${token}` } }
-  //   )
-  //   .then((success) => {
-  //     if (success.data._status) {
-  //       toast.success('Profile updated successfully');
-  //       setImagePath(success.data._image_path);
-  //       setRefreshProfile(prev => !prev); //toggle refresh flag to refetch profile
-  //       data.reset();
-  //     } else {
-  //       toast.error('Something went wrong');
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     toast.error(error.response?.data?._message || error.message);
-  //   });
-  // };
-
   const updateProfile = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -164,8 +129,7 @@ export default function Profile() {
 
     const token = Cookies.get("token");
 
-    axios.post(
-      `${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_ADMIN_UPDATE_PROFILE}`,
+    axios.post(`${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_ADMIN_UPDATE_PROFILE}`,
       formData,
       {
         headers: {
