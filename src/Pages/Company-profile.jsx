@@ -222,7 +222,7 @@ export default function CompanyProfile() {
         const token = Cookies.get("token");
 
         const res = await axios.post(
-          `${VITE_BASE_URL}/company/details/${id}`,
+          `${VITE_BASE_URL}company/details/${id}`,
           {},
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -233,7 +233,7 @@ export default function CompanyProfile() {
           // build FULL image URL
           if (res.data._data?.image) {
             setImageUrl(
-              `https://finalproject-api-5.onrender.com/uploads/company/${res.data._data.image}`
+              `http://localhost:4000/uploads/company/${res.data._data.image}`
             );
           }
         } else {

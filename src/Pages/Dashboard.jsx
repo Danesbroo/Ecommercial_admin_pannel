@@ -12,7 +12,7 @@ export default function Dashboard() {
   const [user, setUser] = useState('')
   const [product, setProduct] = useState('')
   useEffect(() => {
-    axios.get("http://localhost:4000/api/admin/dashboard")
+    axios.get(`${VITE_BASE_URL}dashboard`)
       .then((response) => {
         setTotalAmount(response.data.totalAmount[0].totalAmount);
         setTotalNumber(response.data._total_records);
@@ -23,7 +23,7 @@ export default function Dashboard() {
 }, [])
 
 useEffect(() => {
-  axios.get("http://localhost:4000/api/admin/usernumber")
+  axios.get(`${VITE_BASE_URL}usernumber`)
     .then((response) => {
       setUser(response.data._total_records)
     })
@@ -32,7 +32,7 @@ useEffect(() => {
 }) 
 }, [])
 useEffect(() => {
-  axios.get("http://localhost:4000/api/admin/productcount")
+  axios.get(`${VITE_BASE_URL}productcount`)
     .then((response) => {
       setProduct(response.data._total_records)
     })
