@@ -287,7 +287,7 @@ export default function CompanyProfile() {
       const token = Cookies.get("token");
 
       const res = await axios.put(
-        `http://localhost:4000/api/admin/company/update/${id}`,
+        `${import.meta.env.VITE_BASE_URL}company/update/${id}`,
         formData,
         {
           headers: {
@@ -304,7 +304,7 @@ export default function CompanyProfile() {
 
         if (res.data._data?.image) {
           setImageUrl(
-            `http://localhost:4000/uploads/company/${res.data._data.image}`
+            `https://finalproject-api-5.onrender.com/uploads/company/${res.data._data.image}`
           );
         }
       } else {
