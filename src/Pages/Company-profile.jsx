@@ -222,7 +222,7 @@ export default function CompanyProfile() {
         const token = Cookies.get("token");
 
         const res = await axios.post(
-          `${VITE_BASE_URL}company/details/${id}`,
+          `${import.meta.env.VITE_BASE_URL}company/details/${id}`,
           {},
           { headers: { Authorization: `Bearer ${token}` } }
         );
