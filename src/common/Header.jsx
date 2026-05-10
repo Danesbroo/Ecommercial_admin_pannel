@@ -14,7 +14,6 @@ export default function Header() {
         axios.post(`${import.meta.env.VITE_BASE_URL}company/view`)
         .then((response) => {
             setCompanyId(response.data._data[0]._id);
-            console.log(response.data._data[0]._id);
         })
         .catch((error) => {
              toast.error("Error fetching company ID");     });
