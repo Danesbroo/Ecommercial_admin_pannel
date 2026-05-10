@@ -62,7 +62,6 @@ function HeadDropDown({ Quit, companyId}) { // here is headDropdown is another f
                 </Link>
 
                 <Link to={`/company-profile/${companyId}`} >
-                    console.log(companyId);
                     <button type="button" className="relative inline-flex items-center w-full px-4 py-1.5 text-sm font-medium border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
                         <RiProfileFill className='mr-[10px] font-bold' />
                         Company Profile
