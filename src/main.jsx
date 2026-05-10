@@ -111,9 +111,9 @@ const route = createBrowserRouter(
           <Route path="view" element={<ViewLocation />}></Route>
         </Route>
 
-        <Route path="/user" element={<Users />} />
-        <Route path="/enquiry" element={<Enquiry />} />
-        <Route path="/newsletter" element={<Newsletters />} />
+        <Route path="user" element={<Users />} />
+        <Route path="enquiry" element={<Enquiry />} />
+        <Route path="newsletter" element={<Newsletters />} />
 
         <Route path="faq">
           <Route path="add" element={<AddFaq />}></Route>
