@@ -109,12 +109,12 @@ export default function TestimonialAdd() {
             <Breadcrumb path={"testimonial"} path2={updateIdState ? "Update" : "Add"} slash={"/"} />
             <div className="w-full min-h-[610px]">
                 <div className="max-w-[1220px] mx-auto py-5">
-                    <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
+                    <h3 className="text-[18px] sm:text-[22px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
                         {updateIdState ? "Update Testimonial" : "Add Testimonial"}
                     </h3>
                     <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
-                        <div className="flex gap-5">
-                            <div className="w-1/3">
+                        <div className="flex flex-wrap sm:flex-nowrap gap-5">
+                            <div className="w-full order-2 sm:order-1 sm:w-1/3">
                                 <label
 
                                     className="block  text-md font-medium text-gray-900"
@@ -129,7 +129,7 @@ export default function TestimonialAdd() {
                                     data-height="250"
                                 />
                             </div>
-                            <div className="w-2/3">
+                            <div className="w-full order-1 sm:order-2 sm:w-2/3">
                                 <div className="mb-5">
                                     <label
                                         htmlFor="Title"

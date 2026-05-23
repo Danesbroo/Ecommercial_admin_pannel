@@ -35,9 +35,8 @@ export default function Users() {
 
     const searchValue = (e) => {
         setvalue(e.target.value.toLowerCase());
-
     }
-
+    
     // checkAll checkbox
     var checkedAll = () => {
         if (users.length != checkedValue.length) {
@@ -159,23 +158,23 @@ export default function Users() {
             </div>
             <div className="w-full min-h-[610px]">
                 <div className="max-w-[1220px] mx-auto py-5">
-                    <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
-                        <h3 className="text-[26px] font-semibold" >
+                    <div className='flex item-center justify-between bg-slate-100 py-3 px-2 rounded-t-md border border-slate-400'>
+                        <h3 className="text-[16px] md:text-[26px] font-semibold" >
                             View User
                         </h3>
                         <div className='flex justify-between '>
                             <div onClick={() => setactiveFilter(!activeFilter)} className="cursor-pointer text-[white] mx-3 rounded-[50%] w-[40px] h-[40px]  mx-3 rounded-[50%] w-[40px] h-[40px] flex items-center justify-center  text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                {activeFilter ? <FaFilter className='text-[18px]' /> : <MdFilterAltOff className='text-[18px]' />}
+                                {activeFilter ? <FaFilter className='text-[16px] md:text-[18px]' /> : <MdFilterAltOff className='text-[16px] md:text-[18px]' />}
                             </div>
 
                             <button
                                 type="button"
                                 onClick={changeStatus}
-                                className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Change Status</button>
+                                className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 md:px-4 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Change Status</button>
                             <button
                                 type="button"
                                 onClick={deleteFile}
-                                className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete </button>
+                                className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete </button>
                         </div>
                     </div>
                     <div className="border border-t-0 rounded-b-md border-slate-400">
@@ -222,9 +221,9 @@ export default function Users() {
                                         {users.length > 0 ?
                                             users.map((value, index) => {
                                                 return (
-                                                    <tr key={index} className="bg-white  dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                    <tr key={index} className=" flex items-center bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                         <td className="w-4 p-4">
-                                                            <div className="flex items-center">
+                                                            <div className="flex items-center ">
                                                                 <input
                                                                     onClick={singleCheck}
                                                                     onChange={() => singleCheck(value._id)}
@@ -235,7 +234,7 @@ export default function Users() {
                                                                 <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
                                                             </div>
                                                         </td>
-                                                        <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                                        <th scope="row" className=" px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
 
                                                             <div className="py-4">
                                                                 <div className="text-base font-semibold">{value.fname + "  " + value.lname}</div>
@@ -293,4 +292,6 @@ export default function Users() {
         </section>
     )
 }
+
+
 

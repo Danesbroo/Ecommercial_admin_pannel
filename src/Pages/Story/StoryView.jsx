@@ -20,6 +20,7 @@ export default function StoryView() {
     let [imagePath, setImagePath] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState()
+    const [readMore, setReadMore] = useState(null);
 
 
     useEffect(() => {
@@ -140,8 +141,8 @@ export default function StoryView() {
             </div>
             <div className="w-full min-h-[610px]">
                 <div className="max-w-[1220px] mx-auto py-5">
-                    <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
-                        <h3 className="text-[26px] font-semibold" >
+                    <div className='flex item-center flex-wrap sm:flex-nowrap gap-y-2 justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
+                        <h3 className="text-[20px] sm:text-[22px] md:text-[26px] font-semibold" >
                             View Why Choose Us
                         </h3>
                         <div className='flex justify-between '>
@@ -181,23 +182,23 @@ export default function StoryView() {
                                                     <label for="checkbox-all-search" className="sr-only">checkbox</label>
                                                 </div>
                                             </th>
-                                            <th scope="col" className="px-6 py-3">
+                                            <th scope="col" className="text-[12px] sm:text-sm w-[15%]">
                                                 Title
                                             </th>
-                                            <th scope="col" className=" w-[10%] ">
+                                            <th scope="col" className="text-[12px] sm:text-sm w-[10%] ">
                                                 Image
                                             </th>
-                                            <th scope="col" className=" w-[20%] ">
+                                            <th scope="col" className="text-[12px] sm:text-sm w-[50%] ">
                                                 Description
                                             </th>
 
-                                            <th scope="col" className=" w-[8%] ">
+                                            <th scope="col" className="text-[12px] sm:text-sm w-[8%] ">
                                                 Order
                                             </th>
-                                            <th scope="col" className="w-[11%]">
+                                            <th scope="col" className="text-[12px] sm:text-sm w-[11%]">
                                                 Status
                                             </th>
-                                            <th scope="col" className="w-[6%]">
+                                            <th scope="col" className="text-[12px] sm:text-sm w-[6%]">
                                                 Action
                                             </th>
                                         </tr>
@@ -208,7 +209,7 @@ export default function StoryView() {
                                                 ?
                                                 whyChooseUs.map((v, i) => {
                                                     return (
-                                                        <tr key={i} className="bg-white  dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                        <tr key={i} className="bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                             <td className="w-4 p-4">
                                                                 <div className="flex items-center">
                                                                     <input
@@ -220,12 +221,8 @@ export default function StoryView() {
                                                                     <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
                                                                 </div>
                                                             </td>
-                                                            <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-
-                                                                <div className="py-4">
-                                                                    <div className="text-base font-semibold">{v.title}</div>
-
-                                                                </div>
+                                                            <th className="py-4 text-gray-900 dark:text-white">
+                                                                {v.title}
                                                             </th>
                                                             <td className=" py-4">
                                                                 {
@@ -236,8 +233,22 @@ export default function StoryView() {
 
                                                                 }
                                                             </td>
-                                                            <td className=" py-4">
-                                                                {v.discription}
+                                                            {/* description with read more and read less */}
+                                                            <td className="py-4 break-words max-w-[250px]">
+                                                                {readMore === v._id
+                                                                    ? v.discription
+                                                                    : `${v.discription.slice(0, 20)}...`}
+
+                                                                {v.discription.length > 20 && (
+                                                                    <button
+                                                                        onClick={() =>
+                                                                            setReadMore(readMore === v._id ? null : v._id)
+                                                                        }
+                                                                        className="text-blue-600 ml-2 font-medium"
+                                                                    >
+                                                                        {readMore === v._id ? "Read Less" : "Read More"}
+                                                                    </button>
+                                                                )}
                                                             </td>
 
                                                             <td className=" py-4">

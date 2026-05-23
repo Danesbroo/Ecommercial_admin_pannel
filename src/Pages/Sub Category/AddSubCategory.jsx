@@ -122,11 +122,11 @@ export default function AddSubCategory() {
             {updateIdState ? "Update Sub Category" : "Add Sub Category"}
           </h3>
           <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
-            <div className="flex gap-5">
-              <div className="w-1/3">
+            <div className="flex flex-wrap sm:flex-nowrap gap-5">
+              <div className="w-full sm:w-1/3 order-2 sm:order-1">
                 <label
                   htmlFor="categoryImage"
-                  className="block  text-md font-medium text-gray-900"
+                  className="block text-sm sm:text-md font-medium text-gray-900"
                 >
                   Sub Category Image
                 </label>
@@ -140,10 +140,10 @@ export default function AddSubCategory() {
                 />
               </div>
 
-              <div className="w-2/3">
+              <div className="w-full sm:w-2/3 order-1 sm:order-2">
                 {/* Parent Category Dropdown */}
                 <div className="mb-5">
-                  <label className="block  text-md font-medium text-gray-900">
+                  <label className="block text-md font-medium text-gray-900">
                     Parent Category Name
                   </label>
                   <select
@@ -175,7 +175,7 @@ export default function AddSubCategory() {
                     defaultValue={subCategoryDetails.name}
                     name="name"
                     id="categoryName"
-                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[20%] py-2.5 px-3"
+                    className="text-[19px] border-2 w-full shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block py-2.5 px-3"
                     placeholder="Category Name"
                   />
                 </div>
@@ -191,18 +191,20 @@ export default function AddSubCategory() {
                     name="order"
                     type="text"
                     id="categoryName"
-                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[25%] py-2.5 px-3"
+                    className="text-[19px] border-2 shadow-sm border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 px-3"
                     placeholder="Category Order"
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="focus:outline-none my-5 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5"
-                >
-                  {updateIdState ? "Update Sub Category" : "Add Sub Category"}
-                </button>
+
               </div>
+              
             </div>
+            <button
+                type="submit"
+                className="focus:outline-none my-5 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5"
+              >
+                {updateIdState ? "Update Sub Category" : "Add Sub Category"}
+              </button>
 
           </form>
 

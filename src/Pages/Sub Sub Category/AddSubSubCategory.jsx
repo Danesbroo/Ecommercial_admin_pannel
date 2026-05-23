@@ -149,15 +149,15 @@ export default function AddSubSubCategory() {
   }
   return (
     <section className="w-full">
-      <Breadcrumb path={"Sub Category"} path2={"Add Sub Category"} slash={"/"} />
+      <Breadcrumb path={"Sub Sub Category"} path2={"Add"} slash={"/"} />
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
-          <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
-            {updateIdState ? "Update Sub Category" : "Add Sub Category"}
+          <h3 className="text-[20px] sm:text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
+            {updateIdState ? "Update Sub Sub Category" : "Add Sub Sub Category"}
           </h3>
           <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
-            <div className="flex gap-5">
-              <div className="w-1/3">
+            <div className="flex flex-wrap sm:flex-nowrap gap-5">
+              <div className="w-full sm:w-1/3 order-2 sm:order-1">
                 <label
                   htmlFor="categoryImage"
                   className="block  text-md font-medium text-gray-900"
@@ -173,7 +173,7 @@ export default function AddSubSubCategory() {
                   data-height="260" />
               </div>
 
-              <div className="w-2/3">
+              <div className="w-full sm:w-2/3 order-1 sm:order-2">
 
                 {/* Parent Category Dropdown */}
                 <div className="mb-5">

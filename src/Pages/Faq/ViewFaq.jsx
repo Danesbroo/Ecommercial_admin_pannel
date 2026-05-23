@@ -17,9 +17,10 @@ export default function ViewFaq() {
   let [apiStatus, setApiStatus] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState()
+   const [readMore, setReadMore] = useState(null);
 
   useEffect(() => {
-    axios.post(import.meta.env.VITE_BASE_URL + import.meta.env.VITE_FAQ_VIEW, {page: currentPage})
+    axios.post(import.meta.env.VITE_BASE_URL + import.meta.env.VITE_FAQ_VIEW, { page: currentPage })
       .then((success) => {
         if (success.data._status === true) {
           setFaq(success.data._data)
@@ -139,9 +140,9 @@ export default function ViewFaq() {
 
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
-          <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
-            <h3 className="text-[26px] font-semibold" >
-              View Country
+          <div className='flex item-center flex-wrap sm:flex-nowrap gap-y-2 justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
+            <h3 className="text-[18px] sm:text-[22px] font-semibold" >
+              View FAQs
             </h3>
             <div className='flex justify-between '>
 
@@ -149,11 +150,11 @@ export default function ViewFaq() {
               <button
                 onClick={changeStatus}
                 type="button"
-                className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Change Status</button>
+                className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 sm:px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Change Status</button>
               <button
                 onClick={deleteFile}
                 type="button"
-                className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete </button>
+                className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 sm:px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete </button>
             </div>
           </div>
           <div className="border border-t-0 rounded-b-md border-slate-400">
@@ -213,16 +214,38 @@ export default function ViewFaq() {
                                   <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
                                 </div>
                               </td>
-                              <th scope="row" className="flex items-center px-6 py-4 text-gray-900  dark:text-white">
+                              <th className="py-4 break-words max-w-[250px]">
+                                {readMore === v._id
+                                  ? v.question
+                                  : `${v.question.slice(0, 15)}...`}
 
-                                <div className="py-4">
-                                  <div className="text-base font-semibold">{v.question}</div>
-
-                                </div>
+                                {v.question.length > 15 && (
+                                  <button
+                                    onClick={() =>
+                                      setReadMore(readMore === v._id ? null : v._id)
+                                    }
+                                    className="text-blue-600 ml-2 font-medium"
+                                  >
+                                    {readMore === v._id ? "Read Less" : "Read More"}
+                                  </button>
+                                )}
                               </th>
 
-                              <td className=" py-4 mr-10">
-                                {v.answer}
+                              <td className="py-4 break-words max-w-[250px]">
+                                {readMore === v._id
+                                  ? v.answer
+                                  : `${v.answer.slice(0, 20)}...`}
+
+                                {v.answer.length > 20 && (
+                                  <button
+                                    onClick={() =>
+                                      setReadMore(readMore === v._id ? null : v._id)
+                                    }
+                                    className="text-blue-600 ml-2 font-medium"
+                                  >
+                                    {readMore === v._id ? "Read Less" : "Read More"}
+                                  </button>
+                                )}
                               </td>
                               <td className=" py-4">
                                 {v.order}

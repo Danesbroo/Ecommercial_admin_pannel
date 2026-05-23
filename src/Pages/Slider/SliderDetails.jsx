@@ -127,8 +127,8 @@ export default function SliderDetails() {
             {updateIdState ? "Update Silder" : "Add Slider"}  
           </h3>
           <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
-            <div className="flex gap-5">
-              <div className="w-1/3">
+            <div className="flex flex-wrap sm:flex-nowrap gap-5">
+              <div className="w-full order-2 sm:order-1 sm:w-1/3">
                 <label
                   className="block mb-2 text-md font-medium text-gray-900"
                 >
@@ -143,7 +143,7 @@ export default function SliderDetails() {
                   data-height="250"
                 />
               </div>
-              <div className="w-2/3">
+              <div className="w-full order-1 sm:order-2 sm:w-2/3">
                 <div className="mb-5">
                   <label
                     htmlFor="Title"

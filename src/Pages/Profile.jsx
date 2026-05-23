@@ -189,7 +189,7 @@ export default function Profile() {
     <div className="bg-[#F1F4F5]">
       <Breadcrumb path={"Profile"} />
 
-      <div className="w-full px-6 grid grid-cols-[30%_auto] gap-[10px] py-[20px]">
+      <div className="w-full px-6 grid grid-col-1 sm:grid-cols-[30%_auto] gap-[10px] py-[20px]">
         <div className="bg-white  self-start  rounded-lg shadow-md">
           <div className="py-[40px] text-center">
             <img
@@ -238,8 +238,8 @@ export default function Profile() {
           {/* Edit Profile Form onSubmit={handleSubmit(onSubmit)}  */}
           {activeTab === "editProfile" && (
             <form onSubmit={updateProfile} className="p-3">
-              <div className="flex gap-5">
-                <div className="w-1/3">
+              <div className="flex flex-wrap sm:flex-nowrap gap-5">
+                <div className="w-full sm:w-1/3">
                   <label className="block  text-md font-medium text-gray-900">
                     Choose Image
                   </label>
@@ -251,7 +251,7 @@ export default function Profile() {
                     data-height="236"
                   />
                 </div>
-                <div className="w-2/3">
+                <div className="w-full sm:w-2/3">
                   <div className="mb-5">
                     <label className="block  text-md font-medium text-gray-900">Name</label>
                     <input

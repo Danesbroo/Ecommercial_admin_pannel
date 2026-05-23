@@ -18,62 +18,69 @@ export default function Dashboard() {
         setTotalNumber(response.data._total_records);
       })
       .catch((err) => {
-        console.log(err);       
-  }) 
-}, [])
+        console.log(err);
+      })
+  }, [])
 
-useEffect(() => {
-  axios.get(`${import.meta.env.VITE_BASE_URL}usernumber`)
-    .then((response) => {
-      setUser(response.data._total_records)
-    })
-    .catch((err) => {
-      console.log(err);       
-}) 
-}, [])
-useEffect(() => {
-  axios.get(`${import.meta.env.VITE_BASE_URL}productcount`)
-    .then((response) => {
-      setProduct(response.data._total_records)
-    })
-    .catch((err) => {
-      console.log(err);       
-}) 
-}, [])
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_BASE_URL}usernumber`)
+      .then((response) => {
+        setUser(response.data._total_records)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [])
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_BASE_URL}productcount`)
+      .then((response) => {
+        setProduct(response.data._total_records)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [])
 
   return (
     <>
-    <Breadcrumb path={"Dashboard"}/>
-          <div className="w-full min-h-[610px]">
-            <div className="max-w-[1220px] mx-auto py-5">
-              <div className="grid grid-cols-3 gap-5">
-                <DashboardItems
-                  h3={user}
-                  span={""}
-                  text={"Users"}
-                  bg={"#5956D3"}
-                />
-                <DashboardItems
-                  h3={product}
-                  span={''}
-                  text={"Product"}
-                  bg={"#2998FE"}
-                />
-                <DashboardItems
-                  h3={totalAmount}
-                  span={""}
-                  text={"Total Sales"}
-                  bg={"#FCB01E"}
-                />
-                <DashboardItems
-                  h3={totalNumber}
-                  span={''}
-                  text={"Total Orders"}
-                  bg={"#E95353"}
-                />
-              </div>
-            </div>
+      <Breadcrumb path={"Dashboard"} />
+      <div className="w-full min-h-[610px]">
+        <div className="max-w-[1220px] mx-auto py-5 px-4">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+
+            <DashboardItems
+              h3={user}
+              span={""}
+              text={"Users"}
+              bg={"#5956D3"}
+            />
+
+            <DashboardItems
+              h3={product}
+              span={''}
+              text={"Product"}
+              bg={"#2998FE"}
+            />
+
+            <DashboardItems
+              h3={totalAmount}
+              span={""}
+              text={"Total Sales"}
+              bg={"#FCB01E"}
+            />
+
+            <DashboardItems
+              h3={totalNumber}
+              span={''}
+              text={"Total Orders"}
+              bg={"#E95353"}
+            />
+
           </div>
+
+        </div>
+      </div>
     </>
 
   );

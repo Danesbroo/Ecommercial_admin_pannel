@@ -207,8 +207,8 @@ export default function ViewCategory() {
       </div>
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
-          <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
-            <h3 className="text-[26px] font-semibold" >
+          <div className='flex item-center flex-wrap sm:flex-nowrap gap-y-2 justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
+            <h3 className="text-[16px] sm:text-[20px] md:text-[26px] font-semibold" >
               View Sub Sub Category
             </h3>
             <div className='flex justify-between '>
@@ -243,25 +243,25 @@ export default function ViewCategory() {
                         </div>
                       </th>
 
-                      <th scope="col" className="px-0 py-3">
+                      <th scope="col" className="text-[10px] sm:text-[14px] px-0 py-3">
                         Parent Category
                       </th>
-                      <th scope="col" className="px-0 py-3">
+                      <th scope="col" className="text-[10px] text-wrap sm:text-[14px] px-0 py-3">
                         Sub Category
                       </th>
-                      <th scope="col" className="px-0 py-3">
+                      <th scope="col" className="text-[10px] sm:text-[14px] px-0 py-3">
                         Category Name
                       </th>
-                      <th scope="col" className=" w-[12%] ">
+                      <th scope="col" className="text-[10px] sm:text-[14px] w-[12%] ">
                         Image
                       </th>
-                      <th scope="col" className=" w-[10%] ">
+                      <th scope="col" className="text-[10px] sm:text-[14px] w-[10%] ">
                         Order
                       </th>
-                      <th scope="col" className="w-[10%]  ">
+                      <th scope="col" className="text-[10px] sm:text-[14px] w-[10%]  ">
                         Status
                       </th>
-                      <th scope="col" className="w-[6%]">
+                      <th scope="col" className="text-[10px] sm:text-[14px] w-[6%]">
                         Action
                       </th>
                     </tr>

@@ -330,9 +330,9 @@ export default function CompanyProfile() {
 
       <div className="bg-white p-6 rounded-[6px]">
         <form onSubmit={handleSubmit} autoComplete="off">
-          <div className="flex gap-5">
+          <div className="flex flex-wrap sm:flex-nowrap gap-5">
             {/* LOGO */}
-            <div className="w-1/3">
+            <div className=" w-full sm:w-1/3">
               <label className="block text-md font-medium">
                 Company Logo Image
               </label>
@@ -347,7 +347,7 @@ export default function CompanyProfile() {
             </div>
 
             {/* INFO */}
-            <div className="w-2/3">
+            <div className="w-full sm:w-2/3">
               <label className="block text-md font-medium">Company Name</label>
               <input
                 type="text"

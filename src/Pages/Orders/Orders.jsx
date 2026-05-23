@@ -67,15 +67,13 @@ const deleteFile = () => {
     <section className="w-full">
       {/* Order Modal Start */}
       <div
-        id="order-modal"
-        className={`${orderModal === true ? `block` : `hidden`
-          }  block overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}
-      >
-        <div className="fixed w-full h-screen " style={{ backgroundColor: "rgba(0,0,0,0.8)" }}></div>
-        <div className="relative p-4 px-20 w-full max-w-full max-h-full">
+  id="order-modal"
+  className={`${orderModal ? "flex" : "hidden"} fixed inset-0 z-50 overflow-y-auto overflow-x-hidden items-center justify-center`}>
+        <div className="fixed w-full inset-0 h-screen " style={{ backgroundColor: "rgba(0,0,0,0.8)" }}></div>
+        <div className="relative p-4 px-0 sm:px-10 md:px-20 w-full max-w-full max-h-full">
           <div className="relative bg-white rounded-lg shadow ">
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
-              <h3 className="text-xl font-semibold text-gray-900">
+              <h3 className="text-sm sm:text-xl font-semibold text-gray-900">
                 Product Image's & Price
               </h3>
               <button
@@ -103,7 +101,7 @@ const deleteFile = () => {
               </button>
             </div>
             <div className="p-4 md:p-5 space-y-4">
-              <div className="grid grid-cols-[58%_27%] gap-10 justify-between">
+              <div className="grid grid-cols-1 sm:grid-cols-[58%_27%] gap-10 justify-between">
                 <div className="space-y-8">
                   {
                     selectedOrder?.productInfo?.map((product, index) => {

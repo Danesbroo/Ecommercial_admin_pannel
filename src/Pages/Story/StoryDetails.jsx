@@ -105,36 +105,16 @@ export default function StoryDetails() {
 
   return (
     <section className="w-full">
-      <nav className="flex border-b-2" aria-label="Breadcrumb">
-        <ol className="p-3 px-6 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-          <li className="inline-flex items-center ">
-            <Link href={"/home"} className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600">
-              Home
-            </Link>
-          </li>
-          <li>
-            <div className="flex items-center">
-              /
-              <Link to={"/why-choose-us/view"} className="ms-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ms-2">Why Choose Us</Link>
-            </div>
-          </li>
-          <li aria-current="page">
-            <div className="flex items-center">
-              / {updateIdState ? "Update" : "Add"}
-            </div>
-          </li>
-        </ol>
-      </nav>
-      {/* <Breadcrumb path={"Why Choose Us"} path2={updateIdState ? "Update" : "Add"} link={"/why-choose-us/view"} slash={"/"} /> */}
+      <Breadcrumb path={"Why Choose Us"} path2={updateIdState ? "Update" : "Add"} link={"/why-choose-us/view"} slash={"/"} />
 
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
-          <h3 className="text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
+          <h3 className="text-[22px] sm:text-[26px] font-semibold bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400">
             {updateIdState ? "Update Why Choose Us" : "Add Why Choose Us"}
           </h3>
           <form onSubmit={formHandler} autoComplete="off" className="border border-t-0 p-3 rounded-b-md border-slate-400">
-            <div className="flex gap-5">
-              <div className="w-1/3">
+            <div className="flex flex-wrap sm:flex-nowrap gap-5">
+              <div className="w-full order-2 sm:order-1 sm:w-1/3">
                 <label
 
                   className="block mb-0 text-md font-medium text-gray-900"
@@ -148,7 +128,7 @@ export default function StoryDetails() {
                   data-height="250"
                 />
               </div>
-              <div className="w-2/3">
+              <div className="w-full order-1 sm:order-2 sm:w-2/3">
                 <div className="mb-5">
                   <label
                     htmlFor="Title"

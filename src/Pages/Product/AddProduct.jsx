@@ -81,7 +81,7 @@ export default function AddProduct() {
       .catch((error) => {
         toast.error(error.data._Error_Message[0]);
       });
-  }
+  } 
 
   const changeSubCategory = (e) => {
     let subId = e.target.value;
@@ -218,9 +218,9 @@ export default function AddProduct() {
       <div className='w-full px-6 py-6  '>
 
         <form onSubmit={formHandler}>
-          <div className="grid grid-cols-3 gap-[10px] ">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-[10px] ">
             {/* for left */}
-            <div className="for-images ">
+            <div className="for-images order-3 sm:order-1 ">
 
               <div className="">
                 <label
@@ -259,7 +259,7 @@ export default function AddProduct() {
             </div>
 
             {/* for midd */}
-            <div className="middle">
+            <div className="middle order-1 sm:order-2">
 
               <div className="mb-5">
                 <label
@@ -443,7 +443,7 @@ export default function AddProduct() {
             </div>
 
             {/* for right */}
-            <div className="right-items">
+            <div className="right-items order-2 sm:order-3">
               <div className="mb-5">
                 <label
                   htmlFor="categoryName"
@@ -650,7 +650,7 @@ export default function AddProduct() {
               theme="snow"
               value={value}   // controlled input
               onChange={setValue}
-              className='h-[200px]'
+              className='h-[100px] sm:h-[200px]'
             />
           </div>
 

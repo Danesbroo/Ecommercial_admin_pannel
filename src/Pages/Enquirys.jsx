@@ -181,21 +181,48 @@ export default function Enquiry() {
             </div>
             <div className="w-full min-h-[610px]">
                 <div className="max-w-[1220px] mx-auto py-5">
-                    <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
-                        <h3 className="text-[26px] font-semibold" >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 bg-slate-100 py-2 sm:py-3 px-3 sm:px-4 rounded-t-md border border-slate-400">
+
+                        {/* Title */}
+                        <h3 className="text-[14px] sm:text-[18px] md:text-[22px] lg:text-[26px] font-semibold leading-tight">
                             Contact Enquiry Management
                         </h3>
-                        <div className='flex justify-between '>
-                            <div onClick={() => setactiveFilter(!activeFilter)} className="cursor-pointer text-[white] mx-3 rounded-[50%] w-[40px] h-[40px]  mx-3 rounded-[50%] w-[40px] h-[40px] flex items-center justify-center  text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                {activeFilter ? <FaFilter className='text-[18px]' /> : <MdFilterAltOff className='text-[18px]' />}
+
+                        {/* Actions */}
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+
+                            {/* Filter Button */}
+                            <div
+                                onClick={() => setactiveFilter(!activeFilter)}
+                                className="cursor-pointer flex items-center justify-center
+               w-8 h-8 sm:w-9 sm:h-9 md:w-[40px] md:h-[40px]
+               text-white bg-blue-700 rounded-md sm:rounded-lg"
+                            >
+                                {activeFilter ? <FaFilter className="text-[14px] sm:text-[16px] md:text-[18px]" /> : <MdFilterAltOff className="text-[14px] sm:text-[16px] md:text-[18px]" />}
                             </div>
 
+                            {/* Change Status */}
                             <button
                                 onClick={changeStatus}
-                                type="button"
-                                className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Change Status</button>
-                            <button onClick={deleteFile} type="button" className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete </button>
+                                className="text-white bg-green-700 hover:bg-green-800 font-medium rounded-md
+               text-[11px] sm:text-sm
+               px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2"
+                            >
+                                Change Status
+                            </button>
+
+                            {/* Delete */}
+                            <button
+                                onClick={deleteFile}
+                                className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-md
+               text-[11px] sm:text-sm
+               px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2"
+                            >
+                                Delete
+                            </button>
+
                         </div>
+
                     </div>
                     <div className="border border-t-0 rounded-b-md border-slate-400">
 
@@ -249,18 +276,18 @@ export default function Enquiry() {
                                                         <tr className="bg-white  dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                             <td className="w-4 p-4">
                                                                 <div className="flex items-center">
-                                                                    <input 
-                                                                    id="checkbox-table-search-1" type="checkbox" 
-                                                                    onClick={() => singleCheck(v._id)}
-                                                                    checked={checkedValue.includes(v._id) ? 'checked' : ''}
-                                                                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                                                    <input
+                                                                        id="checkbox-table-search-1" type="checkbox"
+                                                                        onClick={() => singleCheck(v._id)}
+                                                                        checked={checkedValue.includes(v._id) ? 'checked' : ''}
+                                                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                                                     <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
                                                                 </div>
                                                             </td>
-                                                            <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                                            <th scope="row" className="px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
 
                                                                 <div className="py-4">
-                                                                    <div className="text-base font-semibold">{v.email}</div>
+                                                                    <div className="text-[14px] font-semibold ">{v.email}</div>
 
                                                                 </div>
                                                             </th>
@@ -304,15 +331,15 @@ export default function Enquiry() {
 
                                     </tbody>
                                 </table>
-                                {enquiry.length>0
+                                {enquiry.length > 0
                                     ?
                                     <div className='py-1 flex flex-row-reverse'>
-                                    <ResponsivePagination
-                                        current={currentPage}
-                                        total={totalPages}
-                                        onPageChange={setCurrentPage}
-                                    />
-                                </div>
+                                        <ResponsivePagination
+                                            current={currentPage}
+                                            total={totalPages}
+                                            onPageChange={setCurrentPage}
+                                        />
+                                    </div>
                                     :
                                     ''
                                 }

@@ -65,7 +65,7 @@ export default function Login() {
           <form
             autoComplete="off"
             onSubmit={signIn}
-            className="w-[500px] bg-white rounded-lg shadow-2xl p-6 space-y-4"
+            className="w-[300px] sm:w-[500px] bg-white rounded-lg shadow-2xl p-6 space-y-4"
           >
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
               Sign in to your account

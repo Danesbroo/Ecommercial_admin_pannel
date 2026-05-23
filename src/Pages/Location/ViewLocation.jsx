@@ -178,8 +178,8 @@ export default function ViewLocation() {
       </div>
       <div className="w-full min-h-[610px]">
         <div className="max-w-[1220px] mx-auto py-5">
-          <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
-            <h3 className="text-[26px] font-semibold" >
+          <div className='flex item-center flex-wrap sm:flex-nowrap gap-y-2 justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
+            <h3 className="text-[18px] sm:text-[22px] font-semibold" >
               View Country
             </h3>
             <div className='flex justify-between '>

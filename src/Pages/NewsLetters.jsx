@@ -180,10 +180,10 @@ export default function Newsletters() {
 
 
             </div>
-            <div className="w-full min-h-[610px]">
+            <div className="w-full py-5 px-2 sm:px-4">
                 <div className="max-w-[1220px] mx-auto py-5">
-                    <div className='flex item-center justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
-                        <h3 className="text-[26px] font-semibold" >
+                    <div className='flex item-center flex-wrap md:flex-nowrap gap-y-2 justify-between bg-slate-100 py-3 px-4 rounded-t-md border border-slate-400'>
+                        <h3 className="text-[14px] sm:text-[18px] md:text-[20px] lg:text-[26px] font-semibold" >
                             Newsletters Management
                         </h3>
                         <div className='flex justify-between '>
@@ -194,11 +194,11 @@ export default function Newsletters() {
                             <button 
                             type="button" 
                             onClick={changeStatus}
-                            className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Change Status</button>
+                            className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 md:px-4 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"> Change Status</button>
                             <button 
                             type="button" 
                             onClick={deleteFile}
-                            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete </button>
+                            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 md:px-4 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete </button>
                         </div>
                     </div>
                     <div className="border border-t-0 rounded-b-md border-slate-400">
