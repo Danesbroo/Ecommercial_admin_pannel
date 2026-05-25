@@ -11,7 +11,7 @@ export default function Orders() {
   let [selectedOrder, setSelectedOrder] = useState(null);
   let [checkedValue, setCheckedValue] = useState([])
   let [apiStatus, setApiStatus] = useState(false);
-  
+
   const totalamount = selectedOrder?.productInfo.reduce((acc, product) => acc + product.price * product.quantity, 0);
 
   useEffect(() => {
@@ -28,47 +28,47 @@ export default function Orders() {
   var singleCheck = (id) => {
     console.log(id);
     if (checkedValue.includes(id)) {
-        var data = checkedValue.filter((value) => {
-            if (value != id) {
-                return value;
-            }
-        })
-        data = [...data];
-        setCheckedValue(data);
+      var data = checkedValue.filter((value) => {
+        if (value != id) {
+          return value;
+        }
+      })
+      data = [...data];
+      setCheckedValue(data);
     } else {
-        const data = [...checkedValue, id];
-        setCheckedValue(data);
+      const data = [...checkedValue, id];
+      setCheckedValue(data);
     }
-}
-const deleteFile = () => {
+  }
+  const deleteFile = () => {
 
-  if (checkedValue.length > 0) {
+    if (checkedValue.length > 0) {
       if (confirm('Are you Sure you Want to delete !!')) {
-          axios.put(`${import.meta.env.VITE_BASE_URL}order/decompose", { _id: checkedValue }`)
-              .then((response) => {
-                  if (response.data._status == true) {
-                      toast.success(response.data._message);
-                      setApiStatus(!apiStatus);
-                      setCheckedValue([]);
-                  } else {
-                      toast.error(response.data._message);
-                  }
-              })
-              .catch(() => {
-                  toast.error('Something went wrong !!');
-              })
+        axios.put(`${import.meta.env.VITE_BASE_URL}order/decompose`, { _id: checkedValue })
+          .then((response) => {
+            if (response.data._status == true) {
+              toast.success(response.data._message);
+              setApiStatus(!apiStatus);
+              setCheckedValue([]);
+            } else {
+              toast.error(response.data._message);
+            }
+          })
+          .catch(() => {
+            toast.error('Something went wrong !!');
+          })
       }
 
-  } else {
+    } else {
       toast.error('Please select atlest 1 record to delete')
+    }
   }
-}
   return (
     <section className="w-full">
       {/* Order Modal Start */}
       <div
-  id="order-modal"
-  className={`${orderModal ? "flex" : "hidden"} fixed inset-0 z-50 overflow-y-auto overflow-x-hidden items-center justify-center`}>
+        id="order-modal"
+        className={`${orderModal ? "flex" : "hidden"} fixed inset-0 z-50 overflow-y-auto overflow-x-hidden items-center justify-center`}>
         <div className="fixed w-full inset-0 h-screen " style={{ backgroundColor: "rgba(0,0,0,0.8)" }}></div>
         <div className="relative p-4 px-0 sm:px-10 md:px-20 w-full max-w-full max-h-full">
           <div className="relative bg-white rounded-lg shadow ">
@@ -107,7 +107,7 @@ const deleteFile = () => {
                     selectedOrder?.productInfo?.map((product, index) => {
                       return (
                         <div className="flex gap-8 items-center">
-                          <img className="w-28 " src={imagePath+product.image} alt="" />
+                          <img className="w-28 " src={imagePath + product.image} alt="" />
                           <div>
                             <h3 className="text-red-600 font-semibold"> {product.name} </h3>
                             <ul className="space-y-2 mt-3">

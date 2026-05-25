@@ -33,7 +33,6 @@ export default function Profile() {
     )
       .then((success) => {
         if (success.data._status === true) {
-          console.log(success.data);
           setImagePath(success.data._image_path);
           setProfile(success.data._data);
         } else {
@@ -170,7 +169,7 @@ export default function Profile() {
       `${import.meta.env.VITE_BASE_URL}${import.meta.env.VITE_ADMIN_CHANGE_PASSWORD}`,
       finaldata,
       {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}`}
       }
     )
       .then((success) => {
