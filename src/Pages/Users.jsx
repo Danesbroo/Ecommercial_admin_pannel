@@ -178,7 +178,6 @@ export default function Users() {
                         </div>
                     </div>
                     <div className="border border-t-0 rounded-b-md border-slate-400">
-
                         {/* border-2 border-[red] */}
                         <div className="relative overflow-x-auto">
 
@@ -221,7 +220,7 @@ export default function Users() {
                                         {users.length > 0 ?
                                             users.map((value, index) => {
                                                 return (
-                                                    <tr key={index} className=" flex items-center bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                    <tr key={index} className=" bg-white dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                         <td className="w-4 p-4">
                                                             <div className="flex items-center ">
                                                                 <input
