@@ -39,7 +39,7 @@ import ViewFaq from "./Pages/Faq/ViewFaq.jsx";
 import Users from "./Pages/Users.jsx";
 import Newsletters from "./Pages/NewsLetters.jsx";
 import Enquiry from "./Pages/Enquirys.jsx";
-import ProtectedRoute from "./layout/ProtectedRoute.jsx";
+import ProtectedRoute from "./layout/ ProtectedRoute.jsx";
 
 const route = createBrowserRouter(
   createRoutesFromElements(
@@ -96,7 +96,7 @@ const route = createBrowserRouter(
         </Route>
 
         <Route path="orders" element={<Orders />}></Route>
-        
+
         <Route path="slider">
           <Route path="add" element={<SliderDetails />}></Route>
           <Route path="update/:id?" element={<SliderDetails />}></Route>
