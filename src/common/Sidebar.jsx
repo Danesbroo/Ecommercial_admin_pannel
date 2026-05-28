@@ -6,8 +6,6 @@ import { ImCross } from "react-icons/im";
 
 export default function Sidebar({sidebarOpen, setSidebarOpen}) {
   let [sidebar, setSidebar] = useState(null);
-  console.log("open", sidebarOpen);
-
   let toggleMenu = (index) => {
     setSidebar(sidebar === index ? null : index);
   };

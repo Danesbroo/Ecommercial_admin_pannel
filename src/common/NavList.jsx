@@ -222,7 +222,7 @@ export let navList = [
     subMenu: [
       {
         navName: "Orders",
-        link: "/orders/orders",
+        link: "/orders",
       },
     ],
   },
